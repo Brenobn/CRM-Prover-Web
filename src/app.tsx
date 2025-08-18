@@ -18,30 +18,30 @@ export function App() {
       {/* Menu */}
       <div className="flex items-center flex-col bg-background-900 text-center col-span-1 row-span-2 border-r-[0.8px] border-r-[rgb(229,231,235)]">
         <div className='flex items-start flex-col mt-10'>
-          <div className='flex justify-center gap-2'>
-            <LuChartColumn size={20}/>
-            <a className="mb-4">Dashboard</a>
-          </div>
-          <div className='flex justify-center gap-2'>
-            <LuChartColumn size={20}/>
-            <a className="mb-4">Dashboard Avançado</a>
-          </div>
-          <div className='flex justify-center gap-2'>
-            <LuUsers size={20}/>
-            <a className="mb-4">Leads</a>
-          </div>
-          <div className='flex justify-center gap-2'>
-            <LuFileText size={20}/>
-            <a className="mb-4">Dados</a>
-          </div>
-          <div className='flex justify-center gap-2'>
-            <PiStarFour size={20}/>
-            <a className="mb-4">Diagnóstico</a>
-          </div>
-          <div className='flex justify-center gap-2'>
-            <IoSettingsOutline size={20}/>
-            <a className="mb-4">Configurações</a>
-          </div>
+          <a className='flex justify-center gap-2 group cursor-pointer mb-4 text-sm font-medium text-gray-100 transition-colors hover:text-gray-200'>
+            <LuChartColumn size={18} className='text-gray-100 transition-colors group-hover:text-gray-200'/>
+            Dashboard
+          </a>
+          <a className='flex justify-center gap-2 group cursor-pointer mb-4 text-sm font-medium text-gray-100 transition-colors hover:text-gray-200'>
+            <LuChartColumn size={18} className='text-gray-100 transition-colors group-hover:text-gray-200'/>
+            Dashboard Avançado
+          </a>
+          <a className='flex justify-center gap-2 group cursor-pointer mb-4 text-sm font-medium text-gray-100 transition-colors hover:text-gray-200'>
+            <LuUsers size={18} className='text-gray-100 transition-colors group-hover:text-gray-200'/>
+            Leads
+          </a>
+          <a className='flex justify-center gap-2 group cursor-pointer mb-4 text-sm font-medium text-gray-100 transition-colors hover:text-gray-200'>
+            <LuFileText size={18} className='text-gray-100 transition-colors group-hover:text-gray-200'/>
+            Dados
+          </a>
+          <a className='flex justify-center gap-2 group cursor-pointer mb-4 text-sm font-medium text-gray-100 transition-colors hover:text-gray-200'>
+            <PiStarFour size={18} className='text-gray-100 transition-colors group-hover:text-gray-200'/>
+            Diagnóstico
+          </a>
+          <a className='flex justify-center gap-2 group cursor-pointer mb-4 text-sm font-medium text-gray-100 transition-colors hover:text-gray-200'>
+            <IoSettingsOutline size={18} className='text-gray-100 transition-colors group-hover:text-gray-200'/>
+            Configurações
+          </a>
         </div>
       </div>
 
