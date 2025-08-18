@@ -1,7 +1,7 @@
 import { Header } from './components/header';
 
 import { LuChartColumn, LuUsers, LuFileText } from 'react-icons/lu';
-import { PiStarFourLight } from 'react-icons/pi';
+import { PiStarFour } from 'react-icons/pi';
 import { IoSettingsOutline } from 'react-icons/io5';
 
  
@@ -19,27 +19,27 @@ export function App() {
       <div className="flex items-center flex-col bg-background-900 text-center col-span-1 row-span-2 border-r-[0.8px] border-r-[rgb(229,231,235)]">
         <div className='flex items-start flex-col mt-10'>
           <div className='flex justify-center gap-2'>
-            <LuChartColumn />
+            <LuChartColumn size={20}/>
             <a className="mb-4">Dashboard</a>
           </div>
           <div className='flex justify-center gap-2'>
-            <LuChartColumn />
+            <LuChartColumn size={20}/>
             <a className="mb-4">Dashboard Avançado</a>
           </div>
           <div className='flex justify-center gap-2'>
-            <LuUsers />
+            <LuUsers size={20}/>
             <a className="mb-4">Leads</a>
           </div>
           <div className='flex justify-center gap-2'>
-            <LuFileText />
+            <LuFileText size={20}/>
             <a className="mb-4">Dados</a>
           </div>
           <div className='flex justify-center gap-2'>
-            <PiStarFourLight />
+            <PiStarFour size={20}/>
             <a className="mb-4">Diagnóstico</a>
           </div>
           <div className='flex justify-center gap-2'>
-            <IoSettingsOutline />
+            <IoSettingsOutline size={20}/>
             <a className="mb-4">Configurações</a>
           </div>
         </div>
