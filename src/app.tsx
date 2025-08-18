@@ -1,6 +1,8 @@
 import { Header } from './components/header';
 
 import { LuChartColumn, LuUsers, LuFileText } from 'react-icons/lu';
+import { PiStarFourLight } from 'react-icons/pi';
+import { IoSettingsOutline } from 'react-icons/io5';
 
  
 export function App() {
@@ -32,11 +34,14 @@ export function App() {
             <LuFileText />
             <a className="mb-4">Dados</a>
           </div>
-          <div>
-
+          <div className='flex justify-center gap-2'>
+            <PiStarFourLight />
             <a className="mb-4">Diagnóstico</a>
           </div>
-          <a className="mb-4">Configurações</a>
+          <div className='flex justify-center gap-2'>
+            <IoSettingsOutline />
+            <a className="mb-4">Configurações</a>
+          </div>
         </div>
       </div>
 
