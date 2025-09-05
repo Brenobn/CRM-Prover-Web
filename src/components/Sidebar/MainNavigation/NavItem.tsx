@@ -1,30 +1,20 @@
 import { useState, type ElementType, type ReactNode } from 'react';
-import { IoChevronDown } from 'react-icons/io5';
+import { IoChevronBack } from 'react-icons/io5';
 import { tv } from 'tailwind-variants';
 
-// 1. Definimos todas as variantes de estilo do nosso componente aqui
 const navItem = tv({
-  // 'slots' nos permite definir classes para diferentes partes do componente
   slots: {
-    trigger: // O elemento principal clicável (<a> ou <button>)
-      'w-full flex items-center px-3 py-2 rounded-lg gap-2 group cursor-pointer mb-1 transition-colors hover:text-gray-200 hover:bg-gray-75',
-    icon: // O ícone de chevron
-      'text-gray-100 transition-transform duration-300',
+    trigger:
+      'w-full flex items-center px-3 py-2 rounded-lg gap-2 group cursor-pointer mb-1 transition-colors duration-300 ease-in-out hover:text-gray-200 hover:bg-gray-75 dark:text-gray-75 dark:hover:bg-gray-100',
+    mainIcon: 'h-5 w-5 text-gray-100 dark:text-gray-75',
   },
-  // 'variants' define as classes condicionais
   variants: {
     hasChildren: {
       true: {
-        // Se hasChildren for true, o trigger recebe 'justify-between'
         trigger: 'justify-between',
       },
     },
-    isOpen: {
-      true: {
-        // Se isOpen for true, o ícone de chevron gira
-        icon: 'rotate-90',
-      },
-    },
+    isOpen: {},
   },
 });
 
@@ -38,15 +28,13 @@ export function NavItem({ title, icon: Icon, children }: NavItemProps) {
   const [isOpen, setIsOpen] = useState(false);
   const hasChildren = children != null;
 
-  // 2. Chamamos a função com as props/estado atuais para obter as classes corretas
-  const { trigger, icon } = navItem({ hasChildren, isOpen });
+  const { trigger, mainIcon } = navItem({ hasChildren });
 
   if (!hasChildren) {
     return (
-      // 3. Aplicamos a classe do slot 'trigger'
       <a href="#" className={trigger()}>
-        <Icon className="h-5 w-5 text-gray-100" />
-        <span className='text-sm font-medium text-gray-100'>{title}</span>
+        <Icon className={mainIcon()} />
+        <span>{title}</span>
       </a>
     );
   }
@@ -55,11 +43,15 @@ export function NavItem({ title, icon: Icon, children }: NavItemProps) {
     <div>
       <button onClick={() => setIsOpen(!isOpen)} className={trigger()}>
         <span className="flex items-center gap-2">
-          <Icon className="h-5 w-5 text-gray-100" />
-          <span className='text-sm font-medium text-gray-100'>{title}</span>
+          <Icon className={mainIcon()} />
+          <span className='text-sm font-medium text-gray-100 dark:text-white'>{title}</span>
         </span>
-        {/* 3. Aplicamos a classe do slot 'icon' */}
-        <IoChevronDown size={16} className={icon()} />
+
+        <IoChevronBack size={16} className={`
+            text-gray-100 dark:text-gray-75
+            transition-transform duration-400 ease-in-out
+            ${isOpen ? '-rotate-90' : 'rotate-0'}
+          `} />
       </button>
 
       <div
