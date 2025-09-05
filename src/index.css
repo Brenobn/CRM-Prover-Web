@@ -3,9 +3,11 @@
 @theme {
   --color-*: initial;
   --color-white: #ffffff;
-  --color-gray-75: #F3F4F6;
+  --color-gray-75: #F3F4F6; 
   --color-gray-90: #6B7280;
   --color-gray-100: #4B5563;
+  --color-gray-125: #374151;
+  --color-gray-150: #1f2937;
   --color-gray-200: #1A202C;
   --color-gray-300: #111827;
   --color-blue-400: #2563eb;
@@ -14,3 +16,5 @@
 
   --font-sans: "Inter", sans-serif;
 }
+
+@custom-variant dark (&:where(.dark, .dark *));
