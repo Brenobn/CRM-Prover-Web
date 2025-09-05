@@ -3,40 +3,58 @@ import { LuChartColumn, LuFileText, LuUsers } from "react-icons/lu";
 import { NavItem } from "./NavItem";
 import { Sublink } from "./Sublink";
 
+const navigationLinks = [
+  {
+    title: 'Acesso',
+    icon: LuChartColumn,
+    sublinks: [
+      { title: 'Usuários', href: '#' }
+    ],
+  },
+  {
+    title: 'Geral', 
+    icon: LuUsers,
+    sublinks: [
+      { title: 'Vagas em tempo real', href: '#' },
+      { title: 'Pré Leads', href: '#' },
+      { title: 'Leads', href: '#' },
+      { title: 'Clientes', href: '#' },
+      { title: 'Atividades diarias', href: '#' },
+    ],
+  },
+  {
+    title: 'Gestão',
+    icon: LuFileText,
+    sublinks: [
+      { title: 'Resumo de Atividades', href: '#' },
+    ],
+  },
+  {
+    title: 'Configurações',
+    icon: IoSettingsOutline,
+    sublinks: [
+      { title: 'Areas de Atuação', href: '#' },
+      { title: 'Cargos', href: '#' },
+      { title: 'Status Proposta', href: '#' },
+      { title: 'Tipo Documento', href: '#' },
+      { title: 'Fase Venda', href: '#' },
+      { title: 'Feriados', href: '#' },
+    ],
+  },
+];
+
 export function MainNavigation() {
   return (
     <nav className="w-full px-2">
-      <NavItem title="Acesso" icon={LuChartColumn}>
-        <Sublink href="#">Usuários</Sublink>
-      </NavItem>
-
-      <NavItem title="Geral" icon={LuUsers}>
-        <Sublink href="#" >Vagas em tempo real</Sublink>
-        <Sublink href="#" >Pré Leads</Sublink>
-        <Sublink href="#" >Leads</Sublink>
-        <Sublink href="#" >Clientes</Sublink>
-        <Sublink href="#" >Atividades diarias</Sublink>
-      </NavItem>
-
-      <NavItem title="Gestão" icon={LuFileText}>
-        <Sublink href="#" >Resumo de Atividades</Sublink>
-      </NavItem>
-
-      <NavItem title="Configurações" icon={IoSettingsOutline}>
-        <Sublink href="#" >Areas de Atuação</Sublink>
-        <Sublink href="#" >Cargos</Sublink>
-        <Sublink href="#" >Status Proposta</Sublink>
-        <Sublink href="#" >Tipo Documento</Sublink>
-        <Sublink href="#" >Fase Venda</Sublink>
-        <Sublink href="#" >Feriados</Sublink>
-        <Sublink href="#" >Motivo Conclusão Venda</Sublink>
-        <Sublink href="#" >Motivo Recusa Proposta</Sublink>
-        <Sublink href="#" >Status Pré Lead</Sublink>
-        <Sublink href="#" >Equipes</Sublink>
-        <Sublink href="#" >Tipo de Reunião</Sublink>
-        <Sublink href="#" >Organizações</Sublink>
-        <Sublink href="#" >Tipo de Tarefa</Sublink>
-      </NavItem>
+      {navigationLinks.map((link) => (
+        <NavItem key={link.title} title={link.title} icon={link.icon}>
+          {link.sublinks?.map((sublink) => (
+            <Sublink key={sublink.title} href={sublink.href} isActive={false}>
+              {sublink.title}
+            </Sublink>
+          ))} 
+        </NavItem>
+      ))}
     </nav>
   );
 }
