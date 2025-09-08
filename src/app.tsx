@@ -1,5 +1,3 @@
-// Em App.tsx
-
 import { Header } from './components/header';
 import { MdOutlineArrowBackIos, MdOutlineArrowForwardIos } from 'react-icons/md';
 import { Sidebar } from './components/Sidebar';
@@ -7,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 
 export function App() {
   return (
-    <div className="grid grid-cols-[250px_1fr] h-screen bg-white dark:bg-gray-300 transition-colors duration-300 ease-in-out">
+    <div className="grid grid-cols-[250px_1fr] h-screen bg-white dark:bg-gray-300 transition-colors duration-300 ease-in-out overflow-hidden">
       
       <div className="flex flex-col h-screen bg-white dark:bg-gray-150 transition-colors duration-300 ease-in-out bg-background-900 border-r border-[rgb(229,231,235)] dark:border-r-gray-125">
       
@@ -37,10 +35,10 @@ export function App() {
         </div>
       </div>
 
-      <main className="overflow-y-auto">
+      <main className='flex flex-col h-screen'>
         <Header />
 
-        <div className="px-16">
+        <div className="flex-1 px-16 overflow-y-auto">
           <Outlet />
         </div>
       </main>
