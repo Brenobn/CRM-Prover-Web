@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { PiSparkle, PiSun, PiBell, PiMoon } from 'react-icons/pi';
+import { PiSun, PiBell, PiMoon } from 'react-icons/pi';
 
 export function Header() {
   const [theme, setTheme] = useState('light');
@@ -26,11 +26,6 @@ export function Header() {
         </h2>
       </div>
       <div className="flex items-center space-x-4">
-        
-        <span className="flex items-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 gap-1 border-transparent bg-gray-75 dark:bg-gray-100 dark:text-white">
-          <PiSparkle />
-          IA Ativa
-        </span>
 
         <button type='button' onClick={handleThemeToggle} className='inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all shrink-0 [&_svg]:shrink-0 outline-none focus-visible:ring-[3px] cursor-pointer'>
           {theme === 'light' ? (
