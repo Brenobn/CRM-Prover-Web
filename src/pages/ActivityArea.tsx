@@ -1,13 +1,23 @@
-import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table'
+import { useState } from 'react'
+import type { ColumnFiltersState } from '@tanstack/react-table'
+import { flexRender, getCoreRowModel, useReactTable, getPaginationRowModel, getFilteredRowModel } from '@tanstack/react-table'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/table"
 
 import { columns, data } from './ActivityAreaColumns'
  
 export function ActitvityArea() {
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    onColumnFiltersChange: setColumnFilters,
+    getFilteredRowModel: getFilteredRowModel(),
+    state: {
+      columnFilters,
+    },
   });
 
   return(
