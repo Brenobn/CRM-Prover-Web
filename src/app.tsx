@@ -13,7 +13,9 @@ export function App() {
           <MdOutlineArrowBackIos size={24} />
           <MdOutlineArrowForwardIos size={24} />
           <div className='ml-3'>
-            <h1 className='text-xl font-bold text-gray-300 dark:text-white transition-colors duration-300 ease-in-out'>CRM-PRO</h1>
+            <a href='/' className='text-xl font-bold text-gray-300 dark:text-white transition-colors duration-300 ease-in-out cursor-pointer'>
+              CRM-PRO
+            </a>
             <p className='text-xs text-gray-90'>by PROVER</p>
           </div>
         </div>
