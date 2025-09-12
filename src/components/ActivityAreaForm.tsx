@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
+import { useEffect } from "react"
 
 import { Button } from "./ui/button"
 import {
@@ -25,16 +26,23 @@ const formSchema = z.object({
 
 interface AreaDeAruacaoFormProps {
   onSubmit: (Values: z.infer<typeof formSchema>) => void
+  initialData?: z.infer<typeof formSchema>
 }
 
-export function AreaDeAruacaoForm({ onSubmit }: AreaDeAruacaoFormProps) {
+export function AreaDeAruacaoForm({ onSubmit, initialData }: AreaDeAruacaoFormProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
+    defaultValues: initialData || {
       descricao: "",
       ativo: true,
     },
   })
+
+  useEffect(() => {
+    if(initialData) {
+      form.reset(initialData)
+    }
+  }, [initialData, form])
 
   return(
     <Form {...form}>
