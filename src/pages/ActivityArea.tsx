@@ -1,3 +1,4 @@
+import { toast } from 'sonner'
 import { useState, useMemo } from 'react'
 import type { ColumnDef, ColumnFiltersState } from '@tanstack/react-table'
 import { 
@@ -13,7 +14,7 @@ import {
   TableCell, 
   TableHead, 
   TableHeader, 
-  TableRow } from "../components/ui/table"
+  TableRow } from '../components/ui/table'
 import { Button } from '../components/ui/button'
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '../components/ui/sheet'
 import { DataTableToolbar } from '../components/DataTableToolbar'
@@ -93,14 +94,14 @@ export function ActitvityArea() {
           item.id === editingArea.id ? { ...item, ...values } : item
         )
       )
-      alert(`Área "${values.descrição}" atulizada!`)
+      toast.success(`Área '${values.descrição}' atualizada com sucesso`)
     } else {
       const newArea: AreaDeAtuação = {
         id: (data.length + 1).toString(),
         ...values,
       }
       setData(currentData => [...currentData, newArea])
-      alert(`Nova área "${values.descrição}" criada!`)
+      toast(`Nova área "${values.descrição}" criada com sucesso!`)
     }
 
     setIsSheetOpen(false)
