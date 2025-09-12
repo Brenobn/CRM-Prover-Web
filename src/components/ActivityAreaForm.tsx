@@ -18,7 +18,7 @@ import { Input } from "./ui/input"
 import { Switch } from "./ui/switch"
 
 const formSchema = z.object({
-  descricao: z.string().min(3, {
+  descrição: z.string().min(3, {
     message: "A descrição deve ter pelo menos 3 caracteres.",
   }),
   ativo: z.boolean().default(true),
@@ -33,7 +33,7 @@ export function AreaDeAruacaoForm({ onSubmit, initialData }: AreaDeAruacaoFormPr
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData || {
-      descricao: "",
+      descrição: "",
       ativo: true,
     },
   })
@@ -51,7 +51,7 @@ export function AreaDeAruacaoForm({ onSubmit, initialData }: AreaDeAruacaoFormPr
 
           <FormField 
             control={form.control}
-            name="descricao"
+            name="descrição"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Descrição</FormLabel>

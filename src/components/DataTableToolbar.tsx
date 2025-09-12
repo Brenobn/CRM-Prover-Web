@@ -40,9 +40,9 @@ export function DataTableToolbar<TData>({ table }: DataTableToolbarProps<TData>)
       <div className="flex flex-1 items-center space-x-2">
         <Input 
           placeholder="Buscar por descrição..."
-          value={(table.getColumn("descricao")?.getFilterValue() as string) ?? ""}
+          value={(table.getColumn("descrição")?.getFilterValue() as string) ?? ""}
           onChange={(event) => 
-            table.getColumn("descricao")?.setFilterValue(event.target.value)
+            table.getColumn("descrição")?.setFilterValue(event.target.value)
           }
           className="h-8 w-36 lg:w-3xs"
         />
