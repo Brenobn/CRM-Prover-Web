@@ -1,3 +1,4 @@
+import { Toaster } from 'sonner'
 import { Header } from './components/header';
 import { MdOutlineArrowBackIos, MdOutlineArrowForwardIos } from 'react-icons/md';
 import { Sidebar } from './components/Sidebar';
@@ -44,6 +45,7 @@ export function App() {
           <Outlet />
         </div>
       </main>
+      <Toaster richColors />
     </div>
   );
 }
