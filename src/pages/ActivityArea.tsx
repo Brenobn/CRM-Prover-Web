@@ -28,6 +28,16 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '../components/ui/dropdown-menu'
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '../components/ui/alert-dialog'
 
 import { data as initialData } from './ActivityAreaColumns'
  
@@ -36,6 +46,7 @@ export function ActitvityArea() {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [isSheetOpen, setIsSheetOpen] = useState(false)
   const [editingArea, setEditingArea] = useState<AreaDeAtuação | null>(null)
+  const [deletingArea, setDeletingArea] = useState<AreaDeAtuação | null>(null)
 
   const columns = useMemo<ColumnDef<AreaDeAtuação>[]>(
     () => [
@@ -65,6 +76,9 @@ export function ActitvityArea() {
                 }}
                >
                 Editar
+               </DropdownMenuItem>
+               <DropdownMenuItem onClick={() => setDeletingArea(area)}>
+                Deletar
                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -106,6 +120,16 @@ export function ActitvityArea() {
 
     setIsSheetOpen(false)
     setEditingArea(null)
+  }
+
+  function handleDeleteArea() {
+    if(!deletingArea) return
+
+    setData(currentData => currentData.filter(item => item.id !== deletingArea.id))
+
+    toast.success(`Área '${deletingArea.descrição}' deletada com sucesso`)
+
+    setDeletingArea(null)
   }
 
   return(
@@ -193,6 +217,25 @@ export function ActitvityArea() {
         </Table>
       </div>
       <DataTablePagination table={table} />
+
+      <AlertDialog open={!!deletingArea} onOpenChange={() => setDeletingArea(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Você tem certeza absoluta?</AlertDialogTitle>
+            <AlertDialogDescription>
+              Essa ação não pode ser desfeita. Isso irá deletar permanentemente a área de atuação:
+              <br />
+              <strong className='font-medium text-foreground'>{deletingArea?.descrição}</strong>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction onClick={handleDeleteArea}>
+              Sim, deletar
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </section>
   );
 }
