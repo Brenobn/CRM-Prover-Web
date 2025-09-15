@@ -9,6 +9,7 @@ import { SiginUp } from './pages/SiginUp'
 import { ActitvityArea } from './pages/ActivityArea'
 import { ProtectedRoute } from './routes/ProtectedRoute'
 import { AuthProvider } from './hooks/auth'
+import { ThemeProvider } from './hooks/theme'
 
 const router = createBrowserRouter([
   {
@@ -41,8 +42,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </ThemeProvider>
   </StrictMode>,
 )
