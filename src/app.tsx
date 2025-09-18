@@ -6,9 +6,9 @@ import { Outlet } from 'react-router-dom';
 
 export function App() {
   return (
-    <div className="grid grid-cols-[250px_1fr] h-screen bg-white dark:bg-gray-300 transition-colors duration-300 ease-in-out overflow-hidden">
+    <div className="min-h-screen bg-white dark:bg-gray-300 transition-colors duration-300 ease-in-out">
       
-      <div className="flex flex-col h-screen bg-white dark:bg-gray-150 transition-colors duration-300 ease-in-out bg-background-900 border-r border-[rgb(229,231,235)] dark:border-r-gray-125">
+      <div className="fixed top-0 bottom-0 left-0 w-[250px] flex flex-col h-screen bg-white dark:bg-gray-150 transition-colors duration-300 ease-in-out bg-background-900 border-r border-[rgb(229,231,235)] dark:border-r-gray-125">
       
         <div className="flex items-center bg-white dark:bg-gray-150 transition-colors duration-300 ease-in-out h-16 px-6 border-b border-solid border-[rgb(229,231,235)] dark:border-gray-125">
           <MdOutlineArrowBackIos size={24} />
@@ -37,11 +37,11 @@ export function App() {
           </div>
         </div>
       </div>
-
-      <main className='flex flex-col h-screen'>
+      <div className='fixed top-0 left-[250px] right-0 z-10'>
         <Header />
-
-        <div className="flex-1 px-16 overflow-y-auto">
+      </div>
+      <main className='pl-[250px] pt-16'>
+        <div className="p-4 sm:p-6 lg:p-8">
           <Outlet />
         </div>
       </main>
