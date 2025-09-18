@@ -21,9 +21,6 @@ export function Header() {
     <header className="h-16 w-full shadow-sm border-b-background-700 bg-white dark:bg-gray-150 border-b-[0.8px] border-b-[rgb(229,231,235)] dark:border-b-gray-125 flex justify-between items-center px-[4%] transition-colors duration-300 ease-in-out">
       
       <div className="flex items-center ">
-        <h2 className="text-lg font-semibold text-gray-300 dark:text-white transition-colors duration-300 ease-in-out">
-          Sistema de Gestão - PROVER
-        </h2>
       </div>
       <div className="flex items-center space-x-4">
 
