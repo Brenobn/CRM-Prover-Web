@@ -6,7 +6,7 @@ import './index.css'
 import { App } from './app'
 import { SiginIn } from './pages/SiginIn'
 import { SiginUp } from './pages/SiginUp'
-import { ActitvityArea } from './pages/ActivityArea'
+import { ActivityArea } from './pages/ActivityArea'
 import { ProtectedRoute } from './routes/ProtectedRoute'
 import { AuthProvider } from './hooks/auth'
 import { ThemeProvider } from './hooks/theme'
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: 'configuracoes/area-de-atuacao',
-        element: <ActitvityArea />,
+        element: <ActivityArea />,
       },
     ],
   },
