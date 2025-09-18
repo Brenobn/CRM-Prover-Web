@@ -1,9 +1,10 @@
 import { toast } from 'sonner'
 import { useState, useMemo } from 'react'
-import type { ColumnDef, ColumnFiltersState, } from '@tanstack/react-table'
+import type { ColumnDef, ColumnFiltersState, SortingState } from '@tanstack/react-table'
 import {
   flexRender,
   getCoreRowModel,
+  getSortedRowModel,
   useReactTable,
   getPaginationRowModel,
   getFilteredRowModel,
@@ -22,7 +23,7 @@ import { DataTableToolbar } from '../components/DataTableToolbar'
 import { DataTablePagination } from '../components/DataTablePagination'
 import { AreaDeAruacaoForm } from '../components/ActivityAreaForm'
 import type { AreaDeAtuação } from './ActivityAreaColumns'
-import { MoreHorizontal } from 'lucide-react'
+import { MoreHorizontal, ArrowUpDown } from 'lucide-react'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../components/ui/dropdown-menu'
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '../components/ui/alert-dialog'
 import { data as initialData } from './ActivityAreaColumns'
@@ -33,6 +34,7 @@ export function ActivityArea() {
   const [isSheetOpen, setIsSheetOpen] = useState(false)
   const [editingArea, setEditingArea] = useState<AreaDeAtuação | null>(null)
   const [deletingArea, setDeletingArea] = useState<AreaDeAtuação | null>(null)
+  const [sorting, setSorting] = useState<SortingState>([])
 
   const columns = useMemo<ColumnDef<AreaDeAtuação>[]>(
     () => [
@@ -77,8 +79,11 @@ export function ActivityArea() {
     getPaginationRowModel: getPaginationRowModel(),
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
+    onSortingChange: setSorting,
+    getSortedRowModel: getSortedRowModel(),
     state: {
       columnFilters,
+      sorting
     },
   })
 
@@ -145,18 +150,40 @@ export function ActivityArea() {
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id}>
-                    {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
-                  </TableHead>
-                ))}
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <TableHead key={header.id}>
+                      {header.isPlaceholder
+                        ? null
+                        : (
+                          <Button
+                            variant="ghost"
+                            onClick={header.column.getToggleSortingHandler()}
+                            disabled={header.column.id === 'actions'} 
+                            className='w-full flex justify-between p-2'
+                          >
+                            {flexRender(
+                              header.column.columnDef.header,
+                              header.getContext()
+                            )}
+                            {header.column.id !== 'actions' && (
+                              <ArrowUpDown className="h-4 w-4" />
+                            )}
+                          </Button>
+                        )}
+                    </TableHead>
+                  );
+                })}
               </TableRow>
             ))}
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id}>
+                <TableRow 
+                  key={row.id}
+                  data-state={row.getIsSelected() && "selected"}
+                >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
