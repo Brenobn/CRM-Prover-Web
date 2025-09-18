@@ -25,20 +25,19 @@ export function SiginUp() {
 
       <Button
         variant='ghost'
-        size='icon'
         onClick={toggleTheme}
-        className="absolute top-6 right-6"
+        className="absolute top-6 h-12 w-12 right-6 rounded-full p-0 flex items-center justify-center"
       >
         {theme === 'light' ? (
-          <PiMoon className="h-8 w-8" />
+          <PiMoon className="size-6" />
         ) : (
-          <PiSun className="h-8 w-8 dark:text-white transition-colors duration-300" />
+          <PiSun className="dark:text-white transition-colors duration-300 size-6 " />
         )}
       </Button>
       <div className="w-full max-w-md space-y-8 transition-colors duration-300">
 
         <div className="flex flex-col items-center text-center">
-          <ShieldCheck className="h-10 w-10 text-gray-150 dark:text-gray-75"/>
+          <ShieldCheck className="h-10 w-10 text-gray-150 dark:text-gray-75" />
           <h1 className="mt-4 text-3xl font-bold tracking-tight text-blue-400 dark:text-white">
             Crie sua conta
           </h1>

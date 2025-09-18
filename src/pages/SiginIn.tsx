@@ -25,14 +25,13 @@ export function SiginIn() {
 
       <Button
         variant='ghost'
-        size='icon'
         onClick={toggleTheme}
-        className="absolute top-6 right-6"
+        className="absolute top-6 h-12 w-12 right-6 rounded-full p-0 flex items-center justify-center"
       >
         {theme === 'light' ? (
-          <PiMoon className="h-8 w-8" />
+          <PiMoon className="size-6" />
         ) : (
-          <PiSun className="h-8 w-8 dark:text-white" />
+          <PiSun className="dark:text-white size-6" />
         )}
       </Button>
       <div className="w-full max-w-md space-y-8">
