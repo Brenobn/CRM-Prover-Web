@@ -41,13 +41,17 @@ const navigationLinks = [
       { title: 'Feriados', href: '#' },
     ],
   },
-];
+]
 
-export function MainNavigation() {
+interface MainNavigationProps {
+  isOpen: boolean
+}
+
+export function MainNavigation({ isOpen }: MainNavigationProps) {
   return (
     <nav className="w-full px-2">
       {navigationLinks.map((link) => (
-        <NavItem key={link.title} title={link.title} icon={link.icon}>
+        <NavItem key={link.title} title={link.title} icon={link.icon} isOpen={isOpen}>
           {link.sublinks?.map((sublink) => (
             <Sublink key={sublink.title} href={sublink.href} isActive={false}>
               {sublink.title}
