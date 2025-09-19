@@ -1,9 +1,13 @@
 import { MainNavigation } from "./MainNavigation";
 
-export function Sidebar() {
+interface SidebarProps {
+  isOpen: boolean
+}
+
+export function Sidebar({ isOpen } : SidebarProps) {
   return(
     <div className='w-full'>
-      <MainNavigation />
+      <MainNavigation isOpen={isOpen} />
     </div>
   );
 }
