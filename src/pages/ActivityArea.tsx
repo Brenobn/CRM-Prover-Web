@@ -23,8 +23,7 @@ import { DataTableToolbar } from '../components/DataTableToolbar'
 import { DataTablePagination } from '../components/DataTablePagination'
 import { AreaDeAruacaoForm } from '../components/ActivityAreaForm'
 import type { AreaDeAtuação } from './ActivityAreaColumns'
-import { MoreHorizontal, ArrowUpDown } from 'lucide-react'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../components/ui/dropdown-menu'
+import { ArrowUpDown, FilePen, Trash2 } from 'lucide-react'
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '../components/ui/alert-dialog'
 import { data as initialData } from './ActivityAreaColumns'
 
@@ -50,21 +49,29 @@ export function ActivityArea() {
         cell: ({ row }) => {
           const area = row.original
           return (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="h-8 w-8 p-0">
-                  <MoreHorizontal className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => { setEditingArea(area); setIsSheetOpen(true) }}>
-                  Editar
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setDeletingArea(area)}>
-                  Deletar
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <div className='flex items-center gap-2'>
+              <Button
+                variant="outline"
+                size="icon"
+                className='h-8 w-8'
+                onClick={() => {
+                  setEditingArea(area)
+                  setIsSheetOpen(true)
+                }}
+              >
+                <FilePen className='h-4 w-4' />
+                <span className='sr-only'>Editar</span>
+              </Button>
+              <Button
+                variant="destructive"
+                size="icon"
+                className='h-8 w-8'
+                onClick={() => setDeletingArea(area)}
+              >
+                <Trash2 className='h-4 w-4' />
+                <span className='sr-only'>Deletar</span>
+              </Button>
+            </div>
           )
         },
       },
