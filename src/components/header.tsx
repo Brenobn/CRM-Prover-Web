@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
-import { PiSun, PiBell, PiMoon } from 'react-icons/pi';
+import type { ReactNode } from 'react'
+import { useState, useEffect } from 'react'
+import { PiSun, PiBell, PiMoon } from 'react-icons/pi'
 
-export function Header() {
+export function Header({ children }: { children?: ReactNode }) {
   const [theme, setTheme] = useState('light');
 
   useEffect(() => {
@@ -20,7 +21,8 @@ export function Header() {
   return (
     <header className="h-16 w-full shadow-sm border-b-background-700 bg-white dark:bg-gray-150 border-b-[0.8px] border-b-[rgb(229,231,235)] dark:border-b-gray-125 flex justify-between items-center px-[4%] transition-colors duration-300 ease-in-out">
       
-      <div className="flex items-center ">
+      <div className="flex items-center gap-4">
+        {children}
       </div>
       <div className="flex items-center space-x-4">
 
