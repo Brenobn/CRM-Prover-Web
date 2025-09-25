@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { useAuth } from "../hooks/auth"
 import { useNavigate } from "react-router-dom"
 import { Button } from "../components/ui/button"
@@ -13,11 +14,20 @@ export function SiginIn() {
   const { signIn } = useAuth()
   const navigate = useNavigate()
 
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
   const { theme, toggleTheme } = useTheme()
 
-  function handleLogin() {
-    signIn()
-    navigate('/')
+  async function handleLogin() {
+    if (!email || !password) {
+      return alert('Por favor, preencha e-mail e senha.')
+    }
+
+    try {
+      await signIn({ email, password })
+      navigate('/')
+    } catch{ /* empty */ }
   }
 
   return(
@@ -50,11 +60,21 @@ export function SiginIn() {
           <div className="space-y-4">
             <div className="space-y-2">
               <label htmlFor="email" className="text-sm font-medium leading-none">Email</label>
-              <Input id="email" type="email" placeholder="seu@email.com" />
+              <Input 
+                id="email" 
+                type="email" 
+                placeholder="seu@email.com" 
+                onChange={e => setEmail(e.target.value)}
+              />
             </div>
             <div className="space-y-2">
               <label htmlFor="password" className="text-sm font-medium leading-none">Senha</label>
-              <Input id="password" type="password" placeholder="Sua senha" />
+              <Input 
+                id="password" 
+                type="password" 
+                placeholder="Sua senha" 
+                onChange={e => setPassword(e.target.value)}
+              />
             </div>
             <Button onClick={handleLogin} className="w-full bg-blue-400 hover:bg-blue-500 transition-colors duration-300">
               Entrar com Email
