@@ -14,7 +14,7 @@ export function App() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-300" >
       
-      <div className={`fixed top-0 bottom-0 left-0 flex flex-col h-screen bg-white dark:bg-gray-150 transition-colors duration-500 ease-in-out bg-background-900 border-r border-[rgb(229,231,235)] dark:border-r-gray-125 
+      <div className={`fixed top-0 bottom-0 left-0 flex flex-col h-screen bg-white dark:bg-gray-150 transition-colors duration-300 ease-in-out bg-background-900 border-r border-[rgb(229,231,235)] dark:border-r-gray-125 
       ${isSidebarOpen ? 'w-[250px]' : 'w-[72px]'}`}
         onMouseEnter={() => { if(!isSidebarPinned) setIsSidebarHovered(true) }}
         onMouseLeave={() => { if(!isSidebarPinned) setIsSidebarHovered(false) }}
@@ -64,7 +64,11 @@ export function App() {
             onClick={() => setIsSidebarPinned(!isSidebarPinned)}
             className='p-2 rounded-md hover:bg-muted'
           >
-            {isSidebarPinned ? <PanelLeftClose size={20} /> : <PanelRightClose size={20} />}
+            {isSidebarPinned ? 
+              <PanelLeftClose size={20} className='dark:text-white' /> 
+                : 
+              <PanelRightClose size={20} className='dark:text-white' />
+            }
           </button>
         </Header>
       </div>
