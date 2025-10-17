@@ -4,8 +4,6 @@ import axios from "axios"
 import { toast } from "sonner"
 
 interface User {
-  id: string
-  name: string
   email: string
 }
 
@@ -15,12 +13,8 @@ interface SignInCredentials {
 }
 
 interface SignInResponse {
+  autenticado: boolean
   accessToken: string
-  userToken: {
-    id: string
-    email: string
-    claims: { type: string; value: string }[]
-  }
 }
 
 interface AuthContextData {
@@ -47,16 +41,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   async function signIn({ email, password }: SignInCredentials) {
     try{
       const response = await axios.post<SignInResponse>(
-        'https://proverhmgapiidentidade.azurewebsites.net/api/auth/login',
-        { email, password }
+        'https://proverhmgapiidentidade.azurewebsites.net/api/Identidade/autenticar',
+        { 
+          login: email, 
+          senha: password 
+        }
       )
 
-      const { accessToken, userToken } = response.data
+      const { accessToken } = response.data
 
       const userData = {
-        id: userToken.id,
-        email: userToken.email,
-        name: userToken.claims.find((claim: { type: string }) => claim.type === 'nome')?.value || 'Usuário'
+        email: email,
       }
 
       localStorage.setItem('@ProverCRM:token', accessToken)
