@@ -7,6 +7,7 @@ import { App } from './app'
 import { SiginIn } from './pages/SiginIn'
 import { SiginUp } from './pages/SiginUp'
 import { ActivityArea } from './pages/ActivityArea'
+import { Positions } from './pages/Positions'
 import { ProtectedRoute } from './routes/ProtectedRoute'
 import { AuthProvider } from './hooks/auth'
 import { ThemeProvider } from './hooks/theme'
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
         path: 'configuracoes/area-de-atuacao',
         element: <ActivityArea />,
       },
+      {
+        path: 'configuracoes/cargos',
+        element: <Positions />,
+      }
     ],
   },
   
