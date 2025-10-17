@@ -34,7 +34,7 @@ const navigationLinks = [
     icon: IoSettingsOutline,
     sublinks: [
       { title: 'Areas de Atuação', href: '/configuracoes/area-de-atuacao' },
-      { title: 'Cargos', href: '#' },
+      { title: 'Cargos', href: '/configuracoes/cargos' },
       { title: 'Status Proposta', href: '#' },
       { title: 'Tipo Documento', href: '#' },
       { title: 'Fase Venda', href: '#' },
