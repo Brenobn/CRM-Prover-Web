@@ -35,7 +35,7 @@ const navigationLinks = [
     sublinks: [
       { title: 'Areas de Atuação', href: '/configuracoes/area-de-atuacao' },
       { title: 'Cargos', href: '/configuracoes/cargos' },
-      { title: 'Status Proposta', href: '#' },
+      { title: 'Status Proposta', href: '/configuracoes/status-proposta' },
       { title: 'Tipo Documento', href: '#' },
       { title: 'Fase Venda', href: '#' },
       { title: 'Feriados', href: '#' },
