@@ -8,6 +8,7 @@ import { SiginIn } from './pages/SiginIn'
 import { SiginUp } from './pages/SiginUp'
 import { ActivityArea } from './pages/ActivityArea'
 import { Positions } from './pages/Positions'
+import { SalesPhase } from './pages/SalesPhase'
 import { ProposalStatus } from './pages/ProposalStatus'
 import { DocumentType } from './pages/DocumentType'
 import { ProtectedRoute } from './routes/ProtectedRoute'
@@ -42,7 +43,11 @@ const router = createBrowserRouter([
       {
         path: 'configuracoes/tipo-documento',
         element: <DocumentType />
-      }
+      },
+      {
+        path: 'configuracoes/fase-venda',
+        element: <SalesPhase />
+      },
     ],
   },
   
