@@ -9,6 +9,7 @@ import { SiginUp } from './pages/SiginUp'
 import { ActivityArea } from './pages/ActivityArea'
 import { Positions } from './pages/Positions'
 import { ProposalStatus } from './pages/ProposalStatus'
+import { DocumentType } from './pages/DocumentType'
 import { ProtectedRoute } from './routes/ProtectedRoute'
 import { AuthProvider } from './hooks/auth'
 import { ThemeProvider } from './hooks/theme'
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: 'configuracoes/status-proposta',
         element: <ProposalStatus />,
+      },
+      {
+        path: 'configuracoes/tipo-documento',
+        element: <DocumentType />
       }
     ],
   },
