@@ -36,7 +36,7 @@ const navigationLinks = [
       { title: 'Areas de Atuação', href: '/configuracoes/area-de-atuacao' },
       { title: 'Cargos', href: '/configuracoes/cargos' },
       { title: 'Status Proposta', href: '/configuracoes/status-proposta' },
-      { title: 'Tipo Documento', href: '#' },
+      { title: 'Tipo Documento', href: '/configuracoes/tipo-documento' },
       { title: 'Fase Venda', href: '#' },
       { title: 'Feriados', href: '#' },
     ],
