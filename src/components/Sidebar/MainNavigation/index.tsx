@@ -37,7 +37,7 @@ const navigationLinks = [
       { title: 'Cargos', href: '/configuracoes/cargos' },
       { title: 'Status Proposta', href: '/configuracoes/status-proposta' },
       { title: 'Tipo Documento', href: '/configuracoes/tipo-documento' },
-      { title: 'Fase Venda', href: '#' },
+      { title: 'Fase Venda', href: '/configuracoes/fase-venda' },
       { title: 'Feriados', href: '#' },
     ],
   },
