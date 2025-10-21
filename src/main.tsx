@@ -4,9 +4,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
 
 import { App } from './app'
-import { SiginIn } from './pages/SiginIn'
+import { SiginIn } from './pages/SiginIn/SiginIn'
 import { SiginUp } from './pages/SiginUp'
 import { ActivityArea } from './pages/ActivityArea'
+import { Holidays } from './pages/Holidays'
 import { Positions } from './pages/Positions'
 import { SalesPhase } from './pages/SalesPhase'
 import { ProposalStatus } from './pages/ProposalStatus'
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: 'configuracoes/fase-venda',
         element: <SalesPhase />
+      },
+      {
+        path: 'configuracoes/feriados',
+        element: <Holidays />
       },
     ],
   },
