@@ -41,7 +41,7 @@ const navigationLinks = [
       { title: 'Feriados', href: '/configuracoes/feriados' },
       { title: 'Motivo Conclusão Venda', href: '/configuracoes/motivovenda' },
       { title: 'Motivo Recusa Proposta', href: '/configuracoes/motivorecusa' },
-      { title: 'Status Pré Lead', href: '#' },
+      { title: 'Status Pré Lead', href: '/configuracoes/preleadstatus' },
       { title: 'Equipes', href: '#' },
       { title: 'Tipo de Reunião', href: '#' },
       { title: 'Organizações', href: '#' },
