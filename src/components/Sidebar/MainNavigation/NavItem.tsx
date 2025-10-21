@@ -58,7 +58,7 @@ export function NavItem({ title, icon: Icon, children, isOpen: isSidebarOpen }: 
       {isSidebarOpen && (
         <div
           className={`overflow-hidden transition-all duration-300 flex flex-col pl-10 space-y-1 ${
-            isSubMenuOpen ? 'max-h-60' : 'max-h-0'
+            isSubMenuOpen ? 'max-h-[520px]' : 'max-h-0'
           }`}
         >
           {children}
