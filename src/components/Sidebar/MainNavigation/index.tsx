@@ -40,7 +40,7 @@ const navigationLinks = [
       { title: 'Fase Venda', href: '/configuracoes/fase-venda' },
       { title: 'Feriados', href: '/configuracoes/feriados' },
       { title: 'Motivo Conclusão Venda', href: '/configuracoes/motivovenda' },
-      { title: 'Motivo Recusa Proposta', href: '#' },
+      { title: 'Motivo Recusa Proposta', href: '/configuracoes/motivorecusa' },
       { title: 'Status Pré Lead', href: '#' },
       { title: 'Equipes', href: '#' },
       { title: 'Tipo de Reunião', href: '#' },
