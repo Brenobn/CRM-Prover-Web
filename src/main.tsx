@@ -13,6 +13,7 @@ import { SaleConclusionReason } from './pages/SaleConclusionReason'
 import { ProposalRefusalReason } from './pages/ProposalRefusalReason'
 import { PreLeadStatus } from './pages/PreLeadStatus'
 import { Teams } from './pages/Teams'
+import { MeetingType } from './pages/MeetingType'
 import { SalesPhase } from './pages/SalesPhase'
 import { ProposalStatus } from './pages/ProposalStatus'
 import { DocumentType } from './pages/DocumentType'
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
       {
         path: 'configuracoes/equipes',
         element: <Teams />
+      },
+      {
+        path: 'configuracoes/tipodereuniao',
+        element: <MeetingType />
       },
     ],
   },
