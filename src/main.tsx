@@ -10,6 +10,7 @@ import { ActivityArea } from './pages/ActivityArea'
 import { Holidays } from './pages/Holidays'
 import { Positions } from './pages/Positions'
 import { SaleConclusionReason } from './pages/SaleConclusionReason'
+import { ProposalRefusalReason } from './pages/ProposalRefusalReason'
 import { SalesPhase } from './pages/SalesPhase'
 import { ProposalStatus } from './pages/ProposalStatus'
 import { DocumentType } from './pages/DocumentType'
@@ -57,7 +58,11 @@ const router = createBrowserRouter([
       {
         path: 'configuracoes/motivovenda',
         element: <SaleConclusionReason />
-      }
+      },
+      {
+        path: 'configuracoes/motivorecusa',
+        element: <ProposalRefusalReason />
+      },
     ],
   },
   
