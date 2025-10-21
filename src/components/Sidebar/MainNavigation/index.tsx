@@ -44,7 +44,7 @@ const navigationLinks = [
       { title: 'Status Pré Lead', href: '/configuracoes/preleadstatus' },
       { title: 'Equipes', href: '/configuracoes/equipes' },
       { title: 'Tipo de Reunião', href: '/configuracoes/tipodereuniao' },
-      { title: 'Organizações', href: '#' },
+      { title: 'Organizações', href: '/configuracoes/organizacoes' },
       { title: 'Tipo de Tarefa', href: '#' },
     ],
   },
