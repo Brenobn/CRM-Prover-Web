@@ -43,7 +43,7 @@ const navigationLinks = [
       { title: 'Motivo Recusa Proposta', href: '/configuracoes/motivorecusa' },
       { title: 'Status Pré Lead', href: '/configuracoes/preleadstatus' },
       { title: 'Equipes', href: '/configuracoes/equipes' },
-      { title: 'Tipo de Reunião', href: '#' },
+      { title: 'Tipo de Reunião', href: '/configuracoes/tipodereuniao' },
       { title: 'Organizações', href: '#' },
       { title: 'Tipo de Tarefa', href: '#' },
     ],
