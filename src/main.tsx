@@ -15,6 +15,7 @@ import { PreLeadStatus } from './pages/PreLeadStatus'
 import { Teams } from './pages/Teams'
 import { Organizations } from './pages/Organizations'
 import { MeetingType } from './pages/MeetingType'
+import { TaskType } from './pages/TaskType'
 import { SalesPhase } from './pages/SalesPhase'
 import { ProposalStatus } from './pages/ProposalStatus'
 import { DocumentType } from './pages/DocumentType'
@@ -82,6 +83,10 @@ const router = createBrowserRouter([
       {
         path: 'configuracoes/organizacoes',
         element: <Organizations />
+      },
+      {
+        path: 'configuracoes/tipotarefa',
+        element: <TaskType />
       },
     ],
   },
