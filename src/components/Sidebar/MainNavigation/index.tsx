@@ -45,7 +45,7 @@ const navigationLinks = [
       { title: 'Equipes', href: '/configuracoes/equipes' },
       { title: 'Tipo de Reunião', href: '/configuracoes/tipodereuniao' },
       { title: 'Organizações', href: '/configuracoes/organizacoes' },
-      { title: 'Tipo de Tarefa', href: '#' },
+      { title: 'Tipo de Tarefa', href: '/configuracoes/tipotarefa' },
     ],
   },
 ]
