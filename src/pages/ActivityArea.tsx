@@ -159,10 +159,26 @@ export function ActivityArea() {
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead 
+                      key={header.id}
+                      className={
+                        header.column.id === 'ativo' ? 'w-[180px]' : 
+                        header.column.id === 'actions' ? 'w-[100px]' :
+                        '' 
+                      }
+                      >
                       {header.isPlaceholder
                         ? null
                         : (
+                          header.column.id === 'actions' ? (
+                            <div className='p-2'>
+                              {flexRender(
+                                header.column.columnDef.header,
+                                header.getContext()
+
+                              )}
+                            </div>
+                          ) : (
                           <Button
                             variant="ghost"
                             onClick={header.column.getToggleSortingHandler()}
@@ -177,6 +193,7 @@ export function ActivityArea() {
                               <ArrowUpDown className="h-4 w-4" />
                             )}
                           </Button>
+                          )
                         )}
                     </TableHead>
                   );
@@ -192,7 +209,13 @@ export function ActivityArea() {
                   data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell 
+                      key={cell.id}
+                      className={
+                        cell.column.id === 'ativo' ? 'w-[180px]' : 
+                        cell.column.id === 'actions' ? 'w-[100px]' : ''
+                      }
+                    >
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}

@@ -160,7 +160,14 @@ export function SalesPhase() {
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead 
+                      key={header.id}
+                      className={
+                        header.column.id === 'ativo' ? 'w-[180px]' : 
+                        header.column.id === 'actions' ? 'w-[100px]' : 
+                        ''
+                      }
+                    >
                       {header.isPlaceholder
                         ? null
                         : (

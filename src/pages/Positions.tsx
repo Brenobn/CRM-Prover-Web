@@ -127,7 +127,7 @@ export function Positions() {
     <div className="space-y-4">
       <header className="flex items-start justify-between">
         <div className="space-y-1.5">
-          <h1 className="text-2xl font-normal text-gray-150 dark:text-gray-75 -tracking-tight">Áreas de Atuação</h1>
+          <h1 className="text-2xl font-normal text-gray-150 dark:text-gray-75 -tracking-tight">Cargos</h1>
           <div className="text-sm text-muted-foreground">
             <a href="#" className="text-blue-500 hover:underline">Home</a>
             <span> / Cargos</span>
@@ -160,7 +160,14 @@ export function Positions() {
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead 
+                      key={header.id}
+                      className={
+                        header.column.id === 'ativo' ? 'w-[180px]' : 
+                        header.column.id === 'actions' ? 'w-[100px]' : 
+                        ''
+                      }
+                    >
                       {header.isPlaceholder
                         ? null
                         : (
