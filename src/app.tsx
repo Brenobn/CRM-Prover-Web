@@ -1,28 +1,26 @@
 import { Toaster } from 'sonner'
 import { Header } from './components/header'
 import { MdOutlineArrowBackIos, MdOutlineArrowForwardIos } from 'react-icons/md'
-import { PanelLeftClose, PanelRightClose } from 'lucide-react'
 import { Sidebar } from './components/Sidebar'
 import { Outlet } from 'react-router-dom'
 import { useState } from 'react'
 
 export function App() {
-  const [isSidebarPinned, setIsSidebarPinned] = useState(true)
   const [isSidebarHovered, setIsSidebarHovered] = useState(false)
-  const isSidebarOpen = isSidebarPinned || isSidebarHovered
+  const isSidebarOpen = isSidebarHovered
  
   return (
     <div className="min-h-screen bg-white dark:bg-gray-300" >
       
       <div className={`fixed top-0 bottom-0 left-0 flex flex-col h-screen bg-white dark:bg-gray-150 transition-colors duration-300 ease-in-out bg-background-900 border-r border-[rgb(229,231,235)] dark:border-r-gray-125 
       ${isSidebarOpen ? 'w-[250px]' : 'w-[72px]'}`}
-        onMouseEnter={() => { if(!isSidebarPinned) setIsSidebarHovered(true) }}
-        onMouseLeave={() => { if(!isSidebarPinned) setIsSidebarHovered(false) }}
+        onMouseEnter={() =>  setIsSidebarHovered(true)}
+        onMouseLeave={() =>  setIsSidebarHovered(false)}
       >
       
         <div className="flex items-center bg-white dark:bg-gray-150 transition-colors duration-300 ease-in-out h-16 px-6 border-b border-solid border-[rgb(229,231,235)] dark:border-gray-125">
           {isSidebarOpen ? (
-          <>  
+          <> 
             <MdOutlineArrowBackIos size={24} />
             <MdOutlineArrowForwardIos size={24} />
             <div className='ml-3'>
@@ -59,18 +57,7 @@ export function App() {
         </div>
       </div>
       <div className={`fixed top-0 right-0 z-10 transition-all duration-300 ease-in-out ${isSidebarOpen ? 'left-[250px]' : 'left-[72px]'}`}>
-        <Header>
-          <button
-            onClick={() => setIsSidebarPinned(!isSidebarPinned)}
-            className='p-2 rounded-md hover:bg-muted'
-          >
-            {isSidebarPinned ? 
-              <PanelLeftClose size={20} className='dark:text-white' /> 
-                : 
-              <PanelRightClose size={20} className='dark:text-white' />
-            }
-          </button>
-        </Header>
+        <Header />
       </div>
       <main className={`pt-16 transition-all duration-300 ease-in-out ${isSidebarOpen ? 'pl-[250px]' : 'pl-[72px]'}`}>
         <div className="p-4 sm:p-6 lg:p-8">
