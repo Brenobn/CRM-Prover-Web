@@ -2,6 +2,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { LuChartColumn, LuFileText, LuUsers } from "react-icons/lu";
 import { NavItem } from "./NavItem";
 import { Sublink } from "./Sublink";
+import { useLocation } from "react-router-dom";
 
 const navigationLinks = [
   {
@@ -55,17 +56,35 @@ interface MainNavigationProps {
 }
 
 export function MainNavigation({ isOpen }: MainNavigationProps) {
+  const location = useLocation();
+  const pathname = location.pathname
+
   return (
     <nav className="w-full px-2">
-      {navigationLinks.map((link) => (
-        <NavItem key={link.title} title={link.title} icon={link.icon} isOpen={isOpen}>
-          {link.sublinks?.map((sublink) => (
-            <Sublink key={sublink.title} href={sublink.href} isActive={false}>
-              {sublink.title}
-            </Sublink>
-          ))} 
-        </NavItem>
-      ))}
+      {navigationLinks.map((link) => {
+        const isConfigSection = link.title === "Configurações";
+        const shouldBeOpen = isConfigSection && pathname.startsWith("/configuracoes");
+
+        return (
+          <NavItem 
+            key={link.title}
+            title={link.title}
+            icon={link.icon}
+            isOpen={isOpen}
+            defaultopen={shouldBeOpen}
+          >
+            {link.sublinks?.map((sublink) => (
+              <Sublink
+                key={sublink.title}
+                href={sublink.href}
+                isActive={pathname === sublink.href}
+              >
+                {sublink.title}
+              </Sublink>
+            ))}
+          </NavItem>
+        )
+      })}
     </nav>
   );
 }
