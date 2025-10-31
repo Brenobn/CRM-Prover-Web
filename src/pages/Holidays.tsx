@@ -1,5 +1,5 @@
 import { toast } from 'sonner'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import type { ColumnDef, ColumnFiltersState, SortingState } from '@tanstack/react-table'
 import {
   flexRender,
@@ -26,6 +26,23 @@ import { ArrowUpDown, FilePen, Trash2 } from 'lucide-react'
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '../components/ui/alert-dialog'
 import { data as initialData, type Feriado } from './HolidaysColumns'
 
+function parseBRDateToDate(value: string): Date | null {
+  if (!value) return null
+  const [dd, mm, yyyy] = value.split('/')
+  const iso = `${yyyy}-${mm}-${dd}T00:00:00`
+  const date = new Date(iso)
+  return isNaN(date.getTime()) ? null : date
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function sortBRDate(rowA: any, rowB: any, columnId: string) {
+  const a = parseBRDateToDate(rowA.getValue(columnId))
+  const b = parseBRDateToDate(rowB.getValue(columnId))
+  const at = a?.getTime() ?? -Infinity
+  const bt = b?.getTime() ?? -Infinity
+  return at === bt ? 0 : at > bt ? 1 : -1
+}
+
 export function Holidays() {
   const [data, setData] = useState<Feriado[]>(initialData)
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
@@ -33,10 +50,23 @@ export function Holidays() {
   const [editingHoliday, setEditingHoliday] = useState<Feriado | null>(null)
   const [deletingHoliday, setDeletingHoliday] = useState<Feriado | null>(null)
   const [sorting, setSorting] = useState<SortingState>([])
+  const [dateFrom, setDateFrom] = useState<string>('')
+  const [dateTo, setDateTo] = useState<string>('')
 
   const columns = useMemo<ColumnDef<Feriado>[]>(
     () => [
-      { accessorKey: "dataDoFeriado", header: "Data do Feriado" },
+      { 
+        accessorKey: "dataDoFeriado", 
+        header: "Data do Feriado", 
+        sortingFn: sortBRDate,
+        filterFn: (row, columnId, value: {from?: string | null; to?: string | null}) => {
+          const rowDate = parseBRDateToDate(row.getValue(columnId) as string)
+          if (!rowDate) return false
+          const fromOk = value?.from ? rowDate >= new Date(`${value.from}T00:00:00`) : true
+          const toOk = value?.to ? rowDate <=new Date(`${value.to}T23:59:59`) : true
+          return fromOk && toOk
+        },
+      },
       { accessorKey: "descrição", header: "Descrição" },
       { accessorKey: "tipoDoFeriado", header: "Tipo do Feriado" },
       {
@@ -95,6 +125,13 @@ export function Holidays() {
     },
   })
 
+  useEffect(() => {
+    table.getColumn('dataDoFeriado')?.setFilterValue({
+      from: dateFrom || null,
+      to: dateTo || null, 
+    })
+  }, [table, dateFrom, dateTo])
+
   function handleFormSubmit(values: { dataDoFeriado: Date; descrição: string; tipoDoFeriado: "Nacional" | "Local" | "Facultativo"; estado: string | null }) {
     if (editingHoliday) {
       setData(currentData =>
@@ -150,6 +187,34 @@ export function Holidays() {
           </SheetContent>
         </Sheet>
       </header>
+
+      <div className='flex items-center justify-between gap-4 flex-wrap w-full max-w-xl mx-auto'>
+        <div className='flex items-center gap-3'>
+          <div className='flex items-center gap-2'>
+            <label className='text-sm text-muted-foreground'>De</label>
+            <input 
+              type="date"
+              value={dateFrom}
+              onChange={(e) => setDateFrom(e.target.value)}
+              className='h-9 rounded-md border border-input bg-background px-3 text-sm outline-none focus:ring-2 focus:ring-primary/50' 
+            />
+          </div>
+          <div className='flex items-center gap-2'>
+            <label className='text-sm text-muted-foreground'>Até</label>
+            <input 
+              type="date"
+              value={dateTo}
+              onChange={(e) => setDateTo(e.target.value)}
+              className='h-9 rounded-md border border-input bg-background px-3 text-sm outline-none focus:ring-2 focus:ring-primary/50' 
+            />
+          </div>
+          {(dateFrom || dateTo) && (
+            <Button variant="outline" onClick={() => { setDateFrom(''); setDateTo('') }}>
+              Limpar
+            </Button>
+          )}
+        </div>
+      </div>
 
       <div>
         <DataTableToolbar table={table} />
