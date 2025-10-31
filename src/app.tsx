@@ -3,19 +3,35 @@ import { Header } from './components/header'
 import { MdOutlineArrowBackIos, MdOutlineArrowForwardIos } from 'react-icons/md'
 import { Sidebar } from './components/Sidebar'
 import { Outlet } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 export function App() {
   const [isSidebarHovered, setIsSidebarHovered] = useState(false)
   const isSidebarOpen = isSidebarHovered
+  const closeSoft = useRef<number | null>(null)
+
+  const handleEnterOnHover = () => {
+    if (closeSoft.current) {
+      window.clearTimeout(closeSoft.current)
+      closeSoft.current = null
+    }
+    setIsSidebarHovered(true)
+  }
+
+  const handleLeaveOnHover = () => {
+    closeSoft.current = window.setTimeout(() => {
+      setIsSidebarHovered(false)
+      closeSoft.current = null
+    }, 150)
+  }
  
   return (
     <div className="min-h-screen bg-white dark:bg-gray-300" >
       
       <div className={`fixed top-0 bottom-0 left-0 flex flex-col h-screen bg-white dark:bg-gray-150 transition-colors duration-300 ease-in-out bg-background-900 border-r border-[rgb(229,231,235)] dark:border-r-gray-125 
       ${isSidebarOpen ? 'w-[250px]' : 'w-[72px]'}`}
-        onMouseEnter={() =>  setIsSidebarHovered(true)}
-        onMouseLeave={() =>  setIsSidebarHovered(false)}
+        onMouseEnter={handleEnterOnHover}
+        onMouseLeave={handleLeaveOnHover}
       >
       
         <div className="flex items-center bg-white dark:bg-gray-150 transition-colors duration-300 ease-in-out h-16 px-6 border-b border-solid border-[rgb(229,231,235)] dark:border-gray-125">
@@ -38,7 +54,7 @@ export function App() {
           )}
         </div>
 
-        <div className="flex-1 overflow-y-auto py-6">
+        <div className="flex-1 overflow-y-auto py-6 sidebar-scroll">
           <Sidebar isOpen={isSidebarOpen} />
         </div>
 
