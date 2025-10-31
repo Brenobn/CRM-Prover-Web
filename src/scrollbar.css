@@ -1,0 +1,44 @@
+/* Content scrollbar (body): mirror sidebar behavior */
+body {
+  scrollbar-width: auto; /* Firefox */
+  scrollbar-color: rgba(0,0,0,0.3) transparent; /* Light */
+}
+
+body::-webkit-scrollbar {
+  width: 10px; /* WebKit */
+}
+
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+body:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.3);
+}
+
+.dark body {
+  scrollbar-color: var(--input) transparent; /* Dark */
+}
+
+.dark body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dark body::-webkit-scrollbar-thumb {
+  background-color: var(--input);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.dark body:hover::-webkit-scrollbar-thumb {
+  background-color: var(--border);
+}
+
