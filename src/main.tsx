@@ -2,6 +2,7 @@ import {  StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
+import './scrollbar.css'
 
 import { App } from './app'
 import { SiginIn } from './pages/SiginIn/SiginIn'
