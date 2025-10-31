@@ -23,10 +23,11 @@ export interface NavItemProps {
   icon: ElementType
   children?: ReactNode
   isOpen: boolean
+  defaultopen?: boolean
 }
 
-export function NavItem({ title, icon: Icon, children, isOpen: isSidebarOpen }: NavItemProps) {
-  const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
+export function NavItem({ title, icon: Icon, children, isOpen: isSidebarOpen, defaultopen = false }: NavItemProps) {
+  const [isSubMenuOpen, setIsSubMenuOpen] = useState(defaultopen);
   const hasChildren = children != null;
 
   const { trigger, mainIcon } = navItem({ hasChildren });
