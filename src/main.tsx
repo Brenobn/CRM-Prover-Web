@@ -20,6 +20,7 @@ import { TaskType } from './pages/TaskType'
 import { SalesPhase } from './pages/SalesPhase'
 import { ProposalStatus } from './pages/ProposalStatus'
 import { DocumentType } from './pages/DocumentType'
+import { Customers } from './pages/Customers'
 import { ProtectedRoute } from './routes/ProtectedRoute'
 import { AuthProvider } from './hooks/auth'
 import { ThemeProvider } from './hooks/theme'
@@ -88,6 +89,10 @@ const router = createBrowserRouter([
       {
         path: 'configuracoes/tipotarefa',
         element: <TaskType />
+      },
+      {
+        path: 'geral/clientes',
+        element: <Customers />
       },
     ],
   },
