@@ -10,39 +10,84 @@ import * as XLSX from "xlsx"
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
+  filterColumnId: string
+  filterPlaceholder: string
+  reportName: string
+  sheetName: string
 }
 
-export function DataTableToolbar<TData>({ table }: DataTableToolbarProps<TData>) {
+export function DataTableToolbar<TData>({ 
+  table,
+  filterColumnId,
+  filterPlaceholder,
+  reportName,
+  sheetName
+}: DataTableToolbarProps<TData>) {
   const handleExportPDF = () => {
     const doc = new jsPDF()
-    const headers = table.getFlatHeaders().map(header => header.column.columnDef.header as string)
-    const body = table.getRowModel().rows.map(row => row.getVisibleCells().map(cell => cell.getValue() as string))
+    const headers = table.getFlatHeaders()
+      .filter(header => header.column.getIsVisible() && header.id !== 'actions')
+      .map(header => header.column.columnDef.header as string)
 
-    doc.text("Relatório de Áreas de Atuação", 14, 15)
+    const body = table.getRowModel().rows.map(row => 
+      row.getVisibleCells()
+      .map(cell => {
+        const value = cell.getValue()
+        if (typeof value === 'boolean') {
+          return value ? 'Sim' : 'Não'
+        }
+        return String(value)
+      })
+    )
+
+    doc.text(reportName, 14, 15)
     autoTable(doc, {
       head: [headers],
       body: body,
       startY: 20,
     })
-    doc.save('areas-de-atuacao.pdf')
+
+    const fileName = `${reportName.toLowerCase().replace(/ /g, '-')}.pdf`
+    doc.save(fileName)
   }
 
   const handleExportExcel = () => {
-    const dataToExport = table.getRowModel().rows.map(row => (row.original))
+    const headers = table.getFlatHeaders()
+      .filter(header => header.column.getIsVisible() && header.id !== 'actions')
+      .map(header => ({ id: header.id, name: header.column.columnDef.header as string }))
+
+    const dataToExport = table.getRowModel().rows.map(row => {
+      const rowData: Record<string, unknown> = {}
+      headers.forEach(header => {
+        const value = row.getValue(header.id)
+
+        if (typeof value === 'boolean') {
+          rowData[header.name] = value ? 'Sim' : 'Não'
+        } else {
+          rowData[header.name] = value
+        }
+      })
+      return rowData
+    })
+
     const worksheet = XLSX.utils.json_to_sheet(dataToExport)
+    XLSX.utils.sheet_add_aoa(worksheet, [headers.map(h => h.name)], { origin: "A1" })
+
     const workbook = XLSX.utils.book_new()
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Áreas de Atuação")
-    XLSX.writeFile(workbook, 'areas-de-atuacao.xlxs')
+    XLSX.utils.book_append_sheet(workbook, worksheet, sheetName)
+
+    const fileName = `${reportName.toLowerCase().replace(/ /g, '-')}.xlsx`
+    XLSX.writeFile(workbook, fileName)
   }
 
   return(
     <div className="flex items-center justify-between mb-4">
       <div className="flex flex-1 items-center space-x-2">
         <Input 
-          placeholder="Buscar por descrição..."
-          value={(table.getColumn("descrição")?.getFilterValue() as string) ?? ""}
+          placeholder={filterPlaceholder}
+          value={(table.getColumn(filterColumnId)?.getFilterValue() as string) ?? ""}
           onChange={(event) => 
-            table.getColumn("descrição")?.setFilterValue(event.target.value)
+            table.getColumn(filterColumnId)?.setFilterValue(event.target.value)
           }
           className="h-8 w-36 lg:w-3xs"
         />
