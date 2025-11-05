@@ -11,10 +11,41 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "./ui/form"
 import { SheetFooter, SheetClose } from "./ui/sheet"
 import { Input } from "./ui/input"
 import { Switch } from "./ui/switch"
+import { 
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue, 
+} from "./ui/select"
+
+const vendedores = [
+  "Diego da Costa Afonso",
+  "Wladmir Soares Silveira",
+  "Diego Vendedor",
+  "Julia Mendes",
+]
+
+const fases = [
+  "Prospecção",
+  "Qualificação",
+  "Apresentação",
+  "Negociação",
+  "Conclusão",
+  "Perdido",
+]
+
+const statusClientes = [
+  "Lead",
+  "Prospect",
+  "Cliente",
+  "Ex-Cliente",
+]
 
 const formSchema = z.object({
   empresa: z.string().min(3, {
@@ -41,9 +72,9 @@ export function CustomersForm({ onSubmit, initialData }: CustomersFormProps) {
     resolver: zodResolver(formSchema),
     defaultValues: initialData || {
       empresa: "",
-      cnpj: "",
+      cnpj: null,
       nomeDoVendedor: "",
-      faseAtual: "",
+      faseAtual: null,
       statusDoCliente: "",
       ativo: true,
     },
@@ -68,6 +99,7 @@ export function CustomersForm({ onSubmit, initialData }: CustomersFormProps) {
                 <FormControl>
                   <Input placeholder="Ex: Acme Inc." {...field} />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -80,6 +112,30 @@ export function CustomersForm({ onSubmit, initialData }: CustomersFormProps) {
                 <FormControl>
                   <Input placeholder="00.000.000/0000-00" {...field} value={field.value ?? ''} />
                 </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField 
+            control={form.control}
+            name="nomeDoVendedor"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Nome do Vendedor</FormLabel>
+                <Select onValueChange={field.onChange} value={field.value} defaultValue={field.value}>
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecione um vendedor" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {vendedores.map((vendedor) => (
+                      <SelectItem key={vendedor} value={vendedor}>
+                        {vendedor}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </FormItem>
             )}
           />
@@ -89,9 +145,48 @@ export function CustomersForm({ onSubmit, initialData }: CustomersFormProps) {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Fase atual</FormLabel>
-                <FormControl>
-                  <Input placeholder="Ex: Negociação" {...field} value={field.value ?? ''} />
-                </FormControl>
+                <Select
+                  onValueChange={(value) => field.onChange(value === "null" ? null : value)}
+                  value={field.value ?? "null"}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecione a fase" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="null">Nenhuma</SelectItem>
+                    {fases.map((fase) => (
+                      <SelectItem key={fase} value={fase}>
+                        {fase}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField 
+            control={form.control}
+            name="statusDoCliente"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Status do cliente</FormLabel>
+                <Select onValueChange={field.onChange} value={field.value} defaultValue={field.value}>
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecione um status" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {statusClientes.map((status) => (
+                      <SelectItem key={status} value={status}>
+                        {status}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </FormItem>
             )}
           />
