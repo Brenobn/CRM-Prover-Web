@@ -148,7 +148,13 @@ export function Teams() {
       </header>
 
       <div>
-        <DataTableToolbar table={table} />
+        <DataTableToolbar 
+          table={table} 
+          filterColumnId='descrição'
+          filterPlaceholder='Buscar por descrição...'
+          reportName='Relatório de equipes'
+          sheetName='Equipes'
+        />
       </div>
 
       <div className="rounded-md border">

@@ -144,7 +144,13 @@ export function DocumentType() {
       </header>
 
       <div>
-        <DataTableToolbar table={table} />
+        <DataTableToolbar 
+          table={table} 
+          filterColumnId='descrição'
+          filterPlaceholder='Buscar por descrição...'
+          reportName='Relatório de tipo de documento'
+          sheetName='Tipo documento'
+        />
       </div>
 
       <div className="rounded-md border">

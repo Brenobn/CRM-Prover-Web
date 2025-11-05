@@ -148,7 +148,13 @@ export function SaleConclusionReason() {
       </header>
 
       <div>
-        <DataTableToolbar table={table} />
+        <DataTableToolbar 
+          table={table} 
+          filterColumnId='descrição'
+          filterPlaceholder='Buscar por descrição...'
+          reportName='Relatório de motivo de conclusão de venda'
+          sheetName='Motivo conclusão venda'
+        />
       </div>
 
       <div className="rounded-md border">

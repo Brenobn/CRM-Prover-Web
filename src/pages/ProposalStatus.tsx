@@ -148,7 +148,13 @@ export function ProposalStatus() {
       </header>
 
       <div>
-        <DataTableToolbar table={table} />
+        <DataTableToolbar 
+          table={table} 
+          filterColumnId='descrição'
+          filterPlaceholder='Buscar por descrição...'
+          reportName='Relatório de Status de proposta'
+          sheetName='Status proposta'
+        />
       </div>
 
       <div className="rounded-md border">

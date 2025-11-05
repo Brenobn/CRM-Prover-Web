@@ -217,7 +217,13 @@ export function Holidays() {
       </div>
 
       <div>
-        <DataTableToolbar table={table} />
+        <DataTableToolbar 
+          table={table} 
+          filterColumnId='descrição'
+          filterPlaceholder='Buscar por descrição...'
+          reportName='Relatório de feriados'
+          sheetName='Feriados'
+        />
       </div>
 
       <div className="rounded-md border">

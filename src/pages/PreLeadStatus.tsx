@@ -148,7 +148,13 @@ export function PreLeadStatus() {
       </header>
 
       <div>
-        <DataTableToolbar table={table} />
+        <DataTableToolbar 
+          table={table} 
+          filterColumnId='descrição'
+          filterPlaceholder='Buscar por descrição...'
+          reportName='Relatório de status de pré lead'
+          sheetName='Status pré lead'
+        />
       </div>
 
       <div className="rounded-md border">

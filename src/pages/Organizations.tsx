@@ -148,7 +148,13 @@ export function Organizations() {
       </header>
 
       <div>
-        <DataTableToolbar table={table} />
+        <DataTableToolbar 
+          table={table} 
+          filterColumnId='descrição'
+          filterPlaceholder='Buscar por descrição...'
+          reportName='Relatório de organizações'
+          sheetName='Organizações'
+        />
       </div>
 
       <div className="rounded-md border">

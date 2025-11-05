@@ -46,7 +46,21 @@ export function Customers() {
 
   const columns = useMemo<ColumnDef<Cliente>[]>(
     () => [
-      { accessorKey: "empresa", header: "Empresa" },
+      { 
+        accessorKey: "empresa",
+        header: "Empresa",
+        cell: ({ row }) => {
+          const empresa = row.getValue("empresa") as string
+          return (
+            <div 
+              className="truncate max-w-[220px]"
+              title={empresa}
+            >
+              {empresa}
+            </div>
+          )
+        } 
+      },
       { accessorKey: "cnpj", header: "CNPJ" },
       { accessorKey: "nomeDoVendedor", header: "Nome do Vendedor" },
       { accessorKey: "faseAtual", header: "Fase atual" },
@@ -154,7 +168,7 @@ export function Customers() {
               <SheetDescription>{editingCliente ? "Altere os dados abaixo." : "Preencha os dados para cadastrar"}
               </SheetDescription>
             </SheetHeader>
-            <div className="flex-1 overflow-auto">
+            <div className="flex-1 overflow-auto p-6">
               <CustomersForm onSubmit={handleFormSubmit} initialData={editingCliente ?? undefined}/>
             </div>
           </SheetContent>
@@ -162,7 +176,13 @@ export function Customers() {
       </header>
 
       <div>
-        <DataTableToolbar table={table} />
+        <DataTableToolbar 
+          table={table} 
+          filterColumnId="empresa"
+          filterPlaceholder="Buscar por empresa..."
+          reportName="Relatório de Cientes"
+          sheetName="Clientes"
+        />
       </div>
 
       <div className="rounded-md border">

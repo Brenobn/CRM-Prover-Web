@@ -150,7 +150,13 @@ export function SalesPhase() {
       </header>
 
       <div>
-        <DataTableToolbar table={table} />
+        <DataTableToolbar 
+          table={table} 
+          filterColumnId='descrição'
+          filterPlaceholder='Buscar por descrição...'
+          reportName='Relatório de fase de venda'
+          sheetName='Fase venda'
+        />
       </div>
 
       <div className="rounded-md border">

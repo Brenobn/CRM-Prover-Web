@@ -148,7 +148,13 @@ export function MeetingType() {
       </header>
 
       <div>
-        <DataTableToolbar table={table} />
+        <DataTableToolbar 
+          table={table} 
+          filterColumnId='descrição'
+          filterPlaceholder='Buscar por descrição'
+          reportName='Relatório de tipo de reunião'
+          sheetName='Tipo de reunião'
+        />
       </div>
 
       <div className="rounded-md border">

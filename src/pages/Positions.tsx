@@ -150,7 +150,13 @@ export function Positions() {
       </header>
 
       <div>
-        <DataTableToolbar table={table} />
+        <DataTableToolbar 
+          table={table} 
+          filterColumnId="cargo"
+          filterPlaceholder="Buscar por cargos..."
+          reportName="Relatórios de cargos"
+          sheetName="Cargos"
+        />
       </div>
 
       <div className="rounded-md border">
