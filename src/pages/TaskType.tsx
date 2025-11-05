@@ -148,7 +148,13 @@ export function TaskType() {
       </header>
 
       <div>
-        <DataTableToolbar table={table} />
+        <DataTableToolbar 
+          table={table} 
+          filterColumnId='descrição'
+          filterPlaceholder='Buscar por descrição'
+          reportName='Relatório de tarefas'
+          sheetName='Tarefas'
+        />
       </div>
 
       <div className="rounded-md border">
