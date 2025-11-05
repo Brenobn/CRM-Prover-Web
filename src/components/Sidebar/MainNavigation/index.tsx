@@ -19,7 +19,7 @@ const navigationLinks = [
       { title: 'Vagas em tempo real', href: '#' },
       { title: 'Pré Leads', href: '#' },
       { title: 'Leads', href: '#' },
-      { title: 'Clientes', href: '#' },
+      { title: 'Clientes', href: '/geral/clientes' },
       { title: 'Atividades diarias', href: '#' },
     ],
   },
