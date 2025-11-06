@@ -75,7 +75,21 @@ export function Leads() {
         } 
       },
       { accessorKey: "cnpj", header: "CNPJ" },
-      { accessorKey: "vendedor", header: "Vendedor" },
+      { 
+        accessorKey: "vendedor", 
+        header: "Vendedor",
+        cell: ({ row }) => {
+          const vendedor = row.getValue("vendedor") as string
+          return (
+            <div 
+              className="truncate max-w-[220px]"
+              title={vendedor}
+            >
+              {vendedor}
+            </div>
+          )
+        } 
+      },
       { accessorKey: "faseVenda", header: "Fase Venda" },
       {
         accessorKey: "ativo",
@@ -228,7 +242,19 @@ export function Leads() {
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead 
+                      key={header.id}
+                      className={
+                        header.column.id === 'nomeDoCliente' ? 'w-[250px]' : 
+                        header.column.id === 'cnpj' ? 'w-[180px]' :
+                        header.column.id === 'vendedor' ? 'w-[200px]' :
+                        header.column.id === 'faseVenda' ? 'w-[150px]' :
+                        header.column.id === 'ativo' ? 'w-[100px]' : 
+                        header.column.id === 'status' ? 'w-[150px]' :  
+                        header.column.id === 'actions' ? 'w-[100px]' :
+                        ''   
+                      }
+                    >
                       {header.isPlaceholder
                         ? null
                         : (
@@ -260,7 +286,19 @@ export function Leads() {
                   data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell 
+                      key={cell.id}
+                      className={
+                        cell.column.id === 'nomeCliente' ? 'w-[250px]' : 
+                        cell.column.id === 'cnpj' ? 'w-[180px]' :
+                        cell.column.id === 'vendedor' ? 'w-[200px]' :
+                        cell.column.id === 'faseVenda' ? 'w-[150px]' : 
+                        cell.column.id === 'ativo' ? 'w-[100px]' : 
+                        cell.column.id === 'status' ? 'w-[150px]' :
+                        cell.column.id === 'actions' ? 'w-[100px]' : 
+                        ''
+                      }
+                    >
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
