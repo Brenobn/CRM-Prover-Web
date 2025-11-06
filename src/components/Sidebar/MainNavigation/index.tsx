@@ -18,7 +18,7 @@ const navigationLinks = [
     sublinks: [
       { title: 'Vagas em tempo real', href: '#' },
       { title: 'Pré Leads', href: '#' },
-      { title: 'Leads', href: '#' },
+      { title: 'Leads', href: '/geral/leads' },
       { title: 'Clientes', href: '/geral/clientes' },
       { title: 'Atividades diarias', href: '#' },
     ],
