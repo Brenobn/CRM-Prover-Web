@@ -24,7 +24,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../components/ui/select"
-import { Label } from "../components/ui/label"
 import { Button } from "../components/ui/button"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "../components/ui/sheet"
 import { DataTablePagination } from "../components/DataTablePagination"
@@ -207,23 +206,24 @@ export function Leads() {
         </Sheet>
       </header>
 
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2">
-            <Label htmlFor="vendedor-filter" className="text-sm font-medium">Vendedor:</Label>
-            <Select onValueChange={handleVendedorFilterChange} defaultValue="Todos">
-              <SelectTrigger id="vendedor-filter" className="h-8 w-48">
-                <SelectValue placeholder="Selecione o vendedor" />
-              </SelectTrigger>
-              <SelectContent>
-                {vendedores.map(vendedor => (
-                  <SelectItem key={vendedor} value={vendedor}>{vendedor}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+      <div className="rounded-md border text-card-foreground p-4">
+        <h3 className="text-sm font-medium mb-2">Filtrar por Vendedor</h3>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <Select onValueChange={handleVendedorFilterChange} defaultValue="Todos">
+                <SelectTrigger id="vendedor-filter" className="h-8 w-48">
+                  <SelectValue placeholder="Selecione o vendedor" />
+                </SelectTrigger>
+                <SelectContent>
+                  {vendedores.map(vendedor => (
+                    <SelectItem key={vendedor} value={vendedor}>{vendedor}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
           </div>
-        </div>
       </div>
+
 
       <div>
         <DataTableToolbar 
@@ -245,7 +245,7 @@ export function Leads() {
                     <TableHead 
                       key={header.id}
                       className={
-                        header.column.id === 'nomeDoCliente' ? 'w-[250px]' : 
+                        header.column.id === 'nomeCliente' ? 'w-[250px]' : 
                         header.column.id === 'cnpj' ? 'w-[180px]' :
                         header.column.id === 'vendedor' ? 'w-[200px]' :
                         header.column.id === 'faseVenda' ? 'w-[150px]' :
