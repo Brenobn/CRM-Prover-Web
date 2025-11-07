@@ -195,13 +195,13 @@ export function Customers() {
                     <TableHead
                       key={header.id}
                       className={
-                        header.column.id === 'empresa' ? 'w-[250px]' : 
-                        header.column.id === 'cnpj' ? 'w-[180px]' : 
-                        header.column.id === 'nomeDoVendedor' ? 'w-[200px]' : 
-                        header.column.id === 'faseAtual' ? 'w-[150px]' : 
-                        header.column.id === 'ativo' ? 'w-[100px]' : 
-                        header.column.id === 'statusDoCliente' ? 'w-[150px]' : 
-                        header.column.id === 'actions' ? 'w-[100px]' : 
+                        header.column.id === 'empresa' ? 'w-[20%]' : 
+                        header.column.id === 'cnpj' ? 'w-[15%]' : 
+                        header.column.id === 'nomeDoVendedor' ? 'w-[18%]' : 
+                        header.column.id === 'faseAtual' ? 'w-[13%]' : 
+                        header.column.id === 'ativo' ? 'w-[10%]' : 
+                        header.column.id === 'statusDoCliente' ? 'w-[15%]' : 
+                        header.column.id === 'actions' ? 'w-[9%]' : 
                         ''
                       }
                     >
@@ -248,13 +248,13 @@ export function Customers() {
                     <TableCell
                       key={cell.id}
                       className={
-                        cell.column.id === 'empresa' ? 'w-[250px]' : 
-                        cell.column.id === 'cnpj' ? 'w-[180px]' : 
-                        cell.column.id === 'nomeDoVendedor' ? 'w-[200px]' : 
-                        cell.column.id === 'faseAtual' ? 'w-[150px]' : 
-                        cell.column.id === 'ativo' ? 'w-[100px]' : 
-                        cell.column.id === 'statusDoCliente' ? 'w-[150px]' : 
-                        cell.column.id === 'actions' ? 'w-[100px]' : 
+                        cell.column.id === 'empresa' ? 'w-[20%]' : 
+                        cell.column.id === 'cnpj' ? 'w-[15%]' : 
+                        cell.column.id === 'nomeDoVendedor' ? 'w-[18%]' : 
+                        cell.column.id === 'faseAtual' ? 'w-[13%]' : 
+                        cell.column.id === 'ativo' ? 'w-[10%]' : 
+                        cell.column.id === 'statusDoCliente' ? 'w-[15%]' : 
+                        cell.column.id === 'actions' ? 'w-[9%]' : 
                         ''
                       }
                     >
