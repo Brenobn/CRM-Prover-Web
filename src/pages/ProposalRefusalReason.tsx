@@ -148,7 +148,13 @@ export function ProposalRefusalReason() {
       </header>
 
       <div>
-        <DataTableToolbar table={table} />
+        <DataTableToolbar 
+          table={table} 
+          filterColumnId="descrição"
+          filterPlaceholder="Buscar por descrição"
+          reportName="Relatório de recusa de proposta"
+          sheetName="Motivo da recusa de proposta"
+        />
       </div>
 
       <div className="rounded-md border">
