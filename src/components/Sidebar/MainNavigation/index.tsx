@@ -20,7 +20,7 @@ const navigationLinks = [
       { title: 'Pré Leads', href: '#' },
       { title: 'Leads', href: '/geral/leads' },
       { title: 'Clientes', href: '/geral/clientes' },
-      { title: 'Atividades diarias', href: '#' },
+      { title: 'Atividades diarias', href: '/geral/atividades' },
     ],
   },
   {
