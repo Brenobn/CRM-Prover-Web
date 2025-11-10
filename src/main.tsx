@@ -22,6 +22,7 @@ import { ProposalStatus } from './pages/ProposalStatus'
 import { DocumentType } from './pages/DocumentType'
 import { Customers } from './pages/Customers'
 import { Leads } from './pages/Leads'
+import { DailyActivities } from './pages/DailyActivities'
 import { ProtectedRoute } from './routes/ProtectedRoute'
 import { AuthProvider } from './hooks/auth'
 import { ThemeProvider } from './hooks/theme'
@@ -98,6 +99,10 @@ const router = createBrowserRouter([
       {
         path: 'geral/leads',
         element: <Leads />
+      },
+      {
+        path: 'geral/atividades',
+        element: <DailyActivities />
       },
     ],
   },
