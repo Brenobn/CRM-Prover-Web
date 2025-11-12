@@ -9,7 +9,7 @@ const navigationLinks = [
     title: 'Acesso',
     icon: LuChartColumn,
     sublinks: [
-      { title: 'Usuários', href: '#' }
+      { title: 'Usuários', href: '/acesso/usuarios' }
     ],
   },
   {
