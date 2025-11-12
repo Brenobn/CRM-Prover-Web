@@ -65,7 +65,7 @@ export function App() {
             onClick={() => setIsSidebarPinned(!isSidebarPinned)}
             className='rounded-md hover:bg-muted'  
           >
-            <Menu size={20} />
+            <Menu size={20} className='dark:text-white' />
           </button>
         </Header>
       </div>
