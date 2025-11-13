@@ -74,7 +74,7 @@ function AbaEndereco() {
           <Label htmlFor="logradouro">Logradouro</Label>
           <Input id="logradouro" placeholder="Av. Exemplo, 123" />
         </div>
-        <div className="sapce-y-2">
+        <div className="space-y-2">
           <Label htmlFor="estado">Estado</Label>
           <Input id="estado" placeholder="RJ" />
         </div>
@@ -151,33 +151,36 @@ function AbaDocumentos() {
           Adicionar Documento
         </Button>
       </div>
-      <div className="rounded-md border">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Tipo Documento</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Data Assinatura</TableHead>
-              <TableHead>Valor da Proposta</TableHead>
-              <TableHead>PDF</TableHead>
-              <TableHead>Observação</TableHead>
-              <TableHead>Ações</TableHead>
+
+      <div className="rounded-md border overflow-hidden">
+        <Table className="w-full table-auto">
+          <TableHeader className="sticky top-0 z-10 bg-muted/50 backdrop-blur supports-backdrop-filter:bg-muted/60">
+            <TableRow className="[&_th]:h-10">
+              <TableHead className="px-4 py-3 text-left align-middle font-medium text-[12px] uppercase tracking-wide text-muted-foreground">Tipo Documento</TableHead>
+              <TableHead className="px-4 py-3 text-left align-middle font-medium text-[12px] uppercase tracking-wide text-muted-foreground">Status</TableHead>
+              <TableHead className="px-4 py-3 text-left align-middle font-medium text-[12px] uppercase tracking-wide text-muted-foreground">Data Assinatura</TableHead>
+              <TableHead className="px-4 py-3 text-left align-middle font-medium text-[12px] uppercase tracking-wide text-muted-foreground">Valor da Proposta</TableHead>
+              <TableHead className="px-4 py-3 text-left align-middle font-medium text-[12px] uppercase tracking-wide text-muted-foreground">PDF</TableHead>
+              <TableHead className="px-4 py-3 text-left align-middle font-medium text-[12px] uppercase tracking-wide text-muted-foreground">Observação</TableHead>
+              <TableHead className="px-4 py-3 text-left align-middle font-medium text-[12px] uppercase tracking-wide text-muted-foreground">Ações</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            <TableRow>
-              <TableCell>Proposta Comercial</TableCell>
-              <TableCell>Enviada</TableCell>
-              <TableCell>10/11/2025</TableCell>
-              <TableCell>R$ 15.000,00</TableCell>
+            <TableRow className="[&_td]:h-12">
+              <TableCell className="px-4 py-3 align-middle">Proposta Comercial</TableCell>
+              <TableCell className="px-4 py-3 align-middle">Enviada</TableCell>
+              <TableCell className="px-4 py-3 align-middle">10/11/2025</TableCell>
+              <TableCell className="px-4 py-3 align-middle">R$ 15.000,00</TableCell>
               <TableCell>
                 <a href="#" className="text-blue-500 hover:underline">proposta_v1.pdf</a>
               </TableCell>
-              <TableCell>Versão inicial</TableCell>
-              <TableCell className="flex gap-2">
-                <Button variant="outline" size="icon" className="h-8 w-8" title="Editar">
-                  <Trash2 className="h-4 w-4"/>
-                </Button>
+              <TableCell className="px-4 py-3 align-middle">Versão inicial</TableCell>
+              <TableCell className="px-4 py-3 align-middle">
+                <div className="flex justify-end">
+                  <Button variant="outline" size="icon" className="h-8 w-8" title="Editar">
+                    <Trash2 className="h-4 w-4"/>
+                  </Button>
+                </div>
               </TableCell>
             </TableRow>
           </TableBody>
