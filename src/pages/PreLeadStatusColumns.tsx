@@ -4,24 +4,39 @@ import { MoreHorizontal } from "lucide-react"
 import { Button } from '../components/ui/button';
 
 export type StatusPreLead = {
-  id: string;
-  descrição: string;
-  ativo: boolean;
+  id: string
+  descrição: string
+  numeroDias: number
+  numeroOrdem: number
+  ativo: boolean
 }
 
 export const data : StatusPreLead[] = [
-  { id: "1", descrição: "Atendeu", ativo: true },
-  { id: "2", descrição: "Cadastrado", ativo: true },
-  { id: "3", descrição: "Desativado", ativo: false },
-  { id: "4", descrição: "Lead", ativo: true },
-  { id: "5", descrição: "Não atendeu", ativo: false },
-  { id: "6", descrição: "Pendente", ativo: true },
+  { id: "1", descrição: "Atendeu", numeroDias: 0, numeroOrdem: 1, ativo: true },
+  { id: "2", descrição: "Cadastrado", numeroDias: 0, numeroOrdem: 1, ativo: true },
+  { id: "3", descrição: "Desativado", numeroDias: 0, numeroOrdem: 1, ativo: false },
+  { id: "4", descrição: "Lead", numeroDias: 0, numeroOrdem: 1, ativo: true },
+  { id: "5", descrição: "Não atendeu", numeroDias: 0, numeroOrdem: 1, ativo: false },
+  { id: "6", descrição: "Pendente", numeroDias: 0, numeroOrdem: 1, ativo: true },
 ];
 
-export const columns: ColumnDef<StatusPreLead>[] = [
+interface ColumnHandlers {
+  onEdit: (status: StatusPreLead) => void
+  onDelete: (status: StatusPreLead) => void
+}
+
+export const getColumns = ({ onEdit, onDelete }: ColumnHandlers): ColumnDef<StatusPreLead>[] => [
   {
     accessorKey: "descrição",
     header: "Descrição",
+  },
+  {
+    accessorKey: "numeroDias",
+    header: "N° de Dias",
+  },
+  {
+    accessorKey: "numeroOrdem",
+    header: "N° de Ordem"
   },
   {
     accessorKey: "ativo",
@@ -44,10 +59,10 @@ export const columns: ColumnDef<StatusPreLead>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem onClick={() => alert(`Editando: ${area.descrição}`)}>
+            <DropdownMenuItem onClick={() => onEdit(area)}>
               Editar
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => alert(`Deletando: ${area.id}`)}>
+            <DropdownMenuItem onClick={() => onDelete(area)}>
               Deletar
             </DropdownMenuItem>
           </DropdownMenuContent>
