@@ -37,14 +37,6 @@ import {
   AlertDialogHeader,
   AlertDialogTitle
 } from '../components/ui/alert-dialog'
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuTrigger,  
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-} from "../components/ui/dropdown-menu"
 import { LeadsForm, type LeadFormValues } from "../components/LeadsForm"
 import type { Lead } from "./LeadsColumns"
 import { data as initialData } from "./LeadsColumns"
@@ -177,14 +169,8 @@ export function Leads() {
         )
       )
       toast.success(`Lead '${values.nomeCliente}' atualizado com sucesso`)
-    } else {
-      const newLead: Lead = {
-        id: (data.length + 1).toString(),
-        ...values,
-      }
-      setData(currentData => [...currentData, newLead])
-      toast.success(`Novo lead "${values.nomeCliente}" criado com sucesso!`)
-    }
+    } 
+
     setIsSheetOpen(false)
     setEditingLead(null)
   }
@@ -218,26 +204,10 @@ export function Leads() {
               </div>
             </div>
 
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button>Adicionar</Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuLabel>Novo Lead</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => {
-                  setEditingLead(null)
-                  setIsSheetOpen(true)
-                }}>
-                  Cadastro Rápido
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => {
-                  setView({ page: "detail", leadId: null })
-                }}>
-                  Cadatro detalhado
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <Button onClick={() => setView({ page: 'detail', leadId: null })}>
+              Adicionar
+            </Button>
+            
             <Sheet open={isSheetOpen} onOpenChange={(isOpen) => { setIsSheetOpen(isOpen); if (!isOpen) { setEditingLead(null) }}}>
               <SheetContent className="flex flex-col sm:max-w-md p-0 shadow-xl shadow-gray-125">
                 <SheetHeader className="text-left p-6 pb-4 border-b">
