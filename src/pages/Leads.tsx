@@ -44,7 +44,6 @@ import { ArrowUpDown, FilePen, Trash2 } from "lucide-react"
 import { DataTableToolbar } from "../components/DataTableToolbar"
 import { LeadDetail } from "./LeadDetail"
 
-
 type ViewState = {
   page: "list" | "detail"
   leadId: string | null
