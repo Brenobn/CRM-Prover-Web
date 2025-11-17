@@ -89,7 +89,7 @@ export function DataTableToolbar<TData>({
           onChange={(event) => 
             table.getColumn(filterColumnId)?.setFilterValue(event.target.value)
           }
-          className="h-8 w-36 lg:w-3xs"
+          className="h-8 w-36 lg:w-3xs dark:placeholder:text-gray-75 dark:text-gray-75"
         />
       </div>
       <div className="flex items-center space-x-2">
