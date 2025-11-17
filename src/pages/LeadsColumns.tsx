@@ -1,6 +1,20 @@
 export type FaseVenda = "Prospecção" | "Primeira Reunião" | "Proposta" | "Negociação" | "Fechamento"
 export type StatusLead = "Lead" | "Oportunidade" | "Cliente" | "Perdido"
 
+export type Vendedor = {
+  nome: string 
+  email: string
+}
+
+export const vendedores = [
+  "Camilla",
+  "Felipe de oliveira santos",
+  "Elisa Xavier",
+  "Priscilla dos santos da Silva",
+  "Marcelle Pereira dos Santos",
+  "Fernando do Couto Araújo"
+]
+
 export type Lead = {
   id: string
   nomeCliente: string
