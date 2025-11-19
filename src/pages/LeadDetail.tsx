@@ -5,7 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs"
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/table"
-import { FilePen, Plus, Trash2 } from "lucide-react"
+import { FilePen, Trash2 } from "lucide-react"
 import { useEffect, useState, type Dispatch, type SetStateAction } from "react"
 import {
   Dialog,
@@ -70,9 +70,9 @@ function TabReuniao() {
   ]
 
   return (
-    <CardContent className="space-y-4 pt-6">
+    <CardContent className="space-y-4 pt-1">
       <div className="rounded-md border overflow-auto">
-        <Table className="w-full table-auto">
+        <Table className="w-full min-w-[900px] table-auto">
           <TableHeader className="sticky top-0 z-10 bg-muted/50 backdrop-blur supports-backdrop-filter:bg-muted/60">
             <TableRow className="[&_th]:h-10">
               <TableHead className="px-4 py-3 text-left align-middle font-medium text-[12px] uppercase tracking-wide text-muted-foreground">Data</TableHead>
@@ -95,13 +95,17 @@ function TabReuniao() {
                 <TableCell>{reuniao.tipo}</TableCell>
                 <TableCell>{reuniao.status}</TableCell>
                 <TableCell>{reuniao.desc}</TableCell>
-                <TableCell className="text-cemter">
-                  <Button variant="ghost" size="icon" className="text-blue-500" title="Editar Reunião">
-                    <FilePen className="h-4 w-4"/>
-                  </Button>
-                  <Button variant="ghost" size="icon" className="text-red-100" title="Deletar Reunião">
-                    <Trash2 className="h-4 w-4"/>
-                  </Button>
+                <TableCell className="text-center">
+                  <div className="flex items-center justify-center gap-2">
+                    <Button variant="outline" size="icon" className="h-8 w-8" title="Editar Reunião">
+                      <FilePen className="h-4 w-4" />
+                      <span className="sr-only">Editar</span>
+                    </Button>
+                    <Button variant="destructive" size="icon" className="h-8 w-8" title="Deletar Reunião">
+                      <Trash2 className="h-4 w-4" />
+                      <span className="sr-only">Deletar</span>
+                    </Button>
+                  </div>
                 </TableCell>
               </TableRow>
             ))}
@@ -116,7 +120,7 @@ function TabReuniao() {
       <div className="flex justify-end">
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
-            <Button size="sm"><Plus className="h-4 w-4 mr-2"/>Adicionar Reunião</Button>
+            <Button size="sm">Adicionar</Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-lg">
             <DialogHeader>
@@ -428,7 +432,7 @@ function TabTarefa() {
       <div className="flex justify-end items-center mt-4">
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
-            <Button size="sm"><Plus className="h-4 w-4 mr-2" />Adicionar Tarefa</Button>
+            <Button size="sm">Adicionar</Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-2xl">
             <DialogHeader>
@@ -573,7 +577,7 @@ function TabContato() {
       <div className="flex justify-end items-center mt-4">
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
-            <Button size="sm"><Plus className="h-4 w-4 mr-2"/>Adicionar Contato</Button>
+            <Button size="sm">Adicionar</Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-lg">
             <DialogHeader>
@@ -652,9 +656,14 @@ function TabDocumentos() {
               </TableCell>
               <TableCell className="px-4 py-3 align-middle">Versão inicial</TableCell>
               <TableCell className="px-4 py-3 align-middle">
-                <div className="flex justify-end">
-                  <Button variant="outline" size="icon" className="h-8 w-8" title="Editar">
+                <div className="flex justify-end gap-2">
+                  <Button variant="outline" size="icon" className="h-8 w-8" title="Editar documento">
+                    <FilePen className="h-4 w-4"/>
+                    <span className="sr-only">Editar</span>
+                  </Button>
+                  <Button variant="destructive" size="icon" className="h-8 w-8" title="Excluir documento">
                     <Trash2 className="h-4 w-4"/>
+                    <span className="sr-only">Excluir</span>
                   </Button>
                 </div>
               </TableCell>
@@ -663,10 +672,7 @@ function TabDocumentos() {
         </Table>
       </div>
       <div className="flex justify-end">
-        <Button size="sm">
-          <Plus className="mr-2 h-4 w-4" />
-          Adicionar Documento
-        </Button>
+        <Button size="sm">Adicionar</Button>
       </div>
     </CardContent>
   )
@@ -810,7 +816,7 @@ export function LeadDetail({ leadId, onBack }: LeadDetailProps) {
       
 
        <Tabs defaultValue="detalhes">
-          <CardHeader className="border-b px-6 py-4">
+          <CardHeader className="border-t px-12 py-4 mt-8 min-w-full">
             <TabsList>
               <TabsTrigger value="tarefa">Tarefa</TabsTrigger>
               <TabsTrigger value="detalhes">Detalhes</TabsTrigger>
